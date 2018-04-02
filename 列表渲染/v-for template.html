@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for template</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<!-- 渲染模板 -->
+	<div>
+		<ul>
+		<template v-for="n of arry">
+			<li>{{n}}</li>
+			<li>{{n}}</li>
+		</template>
+			
+		</ul>
+	</div>
+	<script>
+		new Vue({
+			el:"div",
+			data:{
+				arry:[1,2,3,4]
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for 遍历对象</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div>
+		<ul>
+			<li v-for="(item,key,index) in object1" :key="index">
+				"name: "{{item.name}}-"age: "{{item.age}}-"key:"{{key}}-"index:"{{index}}
+			</li>
+		</ul>
+	</div>
+	<script>
+
+	/*
+		遍历数组可以有三个参数，item,key,index 很合乎逻辑
+		key 
+	 */
+	var vm = new Vue({
+			el:"div",
+			data:{
+				object1:{
+					firstPerson:{
+							name:"张三",
+							age:18
+					}
+					,secondPerson:{
+							name:"李四",
+							age:19
+					}
+					,thirdlyPerson:{
+							name:"王五",
+							age:20
+					}
+				}
+			}
+	});
+
+	/*
+		very important
+		对象更改检测注意事项
+		1,还是由于 JavaScript 的限制，Vue 不能检测对象属性的添加或删除：// `vm.a` 现在是响应式的 // `vm.b` 不是响应式的
+	 */
+	// Object.assign(vm.object1,{fourthly:{name:"孙六",age:21}})
+	// 
+	// 这样实现对象的数据的添加
+
+	vm.object1 = Object.assign({},vm.object1,{fourthly:{name:"孙六",age:21}});
+	
+	console.log(vm.object1)
+	</script>
+</body>
+</html>

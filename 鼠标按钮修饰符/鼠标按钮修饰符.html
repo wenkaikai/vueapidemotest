@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标按钮修饰符</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<style>
+		ul.style > li{
+			border:1px solid red;
+			line-height: 40px;
+			margin:20px 0;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<ul :class="[aaa]">
+			<li @click.left="fn">左键事件</li>
+			<li @click.right.prevent="right">右键事件</li>
+			<li @click.middle="middle">中间事件</li>
+		</ul>
+	</div>
+	<script>
+		new Vue({
+			el:"div",
+			data:{
+				aaa:"style"
+			},
+			methods:{
+				fn:function(){
+					alert("左键事件");
+				},
+				right:function(){
+					alert("右键事件");
+				},
+				middle:function(){
+					alert("中间事件");
+				}
+			}
+
+		})
+	</script>
+</body>
+</html>

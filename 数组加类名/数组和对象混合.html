@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组和对象的混合</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div v-bind:class="[{active:isAactive},errclass]">数组和对象的混合</div>
+	<script>
+	  new  Vue({
+	  	//对象里面的是true或者false, 数组里面的就是值了
+	  	el:"div",
+	  	data:{
+	  		isAactive:true,
+	  		errclass:'text-danger'
+	  	}
+	  });
+	</script>
+</body>
+</html>

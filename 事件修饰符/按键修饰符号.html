@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>按键修饰符</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div>
+<!-- 
+	这样得话enter抬起来就触发了alert
+ -->
+<!-- <input type="text" @keyup.enter="alert('ok')"> -->
+
+<!-- <input type="text" @keyup.13="alert('ok')"> -->
+
+<!-- 这样绑定f12也是可以得 -->
+<input type="text" @keyup.f12="alert('ok')">
+<!-- 
+
+这些都可以绑定
+    .enter
+    .tab
+    .delete (捕获 “删除” 和 “退格” 键)
+    .esc
+    .space
+    .up
+    .down
+    .left
+    .right
+当然还可以自定义
+可以通过全局 config.keyCodes 对象自定义按键修饰符别名：
+// 可以使用 v-on:keyup.f1
+Vue.config.keyCodes.f1 = 112
+ -->
+</div>
+<script>
+new Vue({
+		el:"div",
+		data:{},
+		methods:{
+			alert:function(a){
+					alert(a);
+			}
+		}
+
+	});
+</script>
+	
+</body>
+</html>

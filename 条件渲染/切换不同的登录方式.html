@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>切换不同的登录方式</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<style>
+		 input{outline:#00FF00 dotted thick}
+	</style>
+</head>
+<body>
+	<div>
+		<template v-if="type">
+			<label for="">昵称</label>
+			<input type="text" placeholder="请输入昵称">	
+		</template>
+		<template v-else>
+			<label for="">密码</label>
+			<input type="text" placeholder="请输入密码">
+		</template>
+		<!-- 
+			这样很容易实现一个toggle比传统的mvc好容易实现多了
+			<button @click="type=!type">toggle</button>
+		 -->
+		<button @click="toggle();">toggle</button>
+	</div>
+	<script>
+	// new Vue({
+	// 	el:"div",
+	// 	data:{
+	// 		type:true
+	// 	}
+
+	// });
+
+	new Vue({
+		el:"div",
+		data:{
+			type:true
+		}
+		,methods:{
+			toggle:function(){
+				this.type=!this.type;
+			}
+		}
+
+	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绑定内联的样式</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div v-bind:style="inlineStyle">内联样式的绑定</div>
+	<!-- <div v-bind:style="[inlineStyle,inlineStyle1]">内联样式的绑定</div> -->
+	<div v-bind:style="{display:['-webkit-box','-ms-flexbox','flex']}">内联样式的绑定</div>
+	<script>
+	new Vue({
+		el:'div',
+		data:{
+			inlineStyle:{
+				color:'red',
+				'font-size':'30px',
+				transform:'skew(5deg)',
+				/*
+					从 2.3.0 起你可以为 style 绑定中的属性提供一个包含多个值的数组，常用于提供多个带前缀的值，例如：
+					这样写只会渲染数组中最后一个被浏览器支持的值。在本例中，如果浏览器支持不带浏览器前缀的 flexbox，那么就只会渲染 display: flex。
+				 */
+				display:['-webkit-box','-ms-flexbox','flex']
+			}
+		}
+	});
+	</script>
+</body>
+</html>

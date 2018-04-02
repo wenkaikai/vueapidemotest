@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>子组件触发父组件的自定义函数</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div>
+	<input type="text" 
+		:placeholder="newTodoText"
+		v-model="newTodoText"
+		v-on:keyup.enter="addNewTodo()"
+	/>
+	<ul>
+		<!-- 
+			is 的作用是告诉 li i am a template
+		 -->
+		 <!-- 我自己写的 -->
+		<!-- <li is="todo-item" v-for="(todo,index) of todos" :key="index" @remove1="remove" :title="todo.title" :dataid="todo.id"></li> -->
+<li is="todo-item" v-for="(todo,index) of todos" :key="index" v-on:remove="todos.splice(index, 1)" :title="todo.title" :dataid="todo.id">
+</li>
+		
+	</ul>
+</div>
+<script>
+
+// `<li>
+// 		<botton v-on:click="$emit(remove)">
+// 		X
+// 		</button>
+// 	</li>`
+Vue.component("todo-item",{
+	template:'\
+	<li>\
+	{{title}}{{dataid}}\
+		<button v-on:click="$emit(\'remove\')">\
+		X\
+		</button>\
+	</li>\
+	',
+	props:['title','dataid']//这时候字母都得是小写
+})
+new Vue({
+	el:"div",
+	data:{
+		newTodoText:"add to todo",
+			todos:[
+				{
+						id:1,
+						title:'Do the dishes'
+					},
+					{
+						id:2,
+						title:'take out the trash'
+					}
+					,{
+						id:3,
+						title:'Mow the lawn'
+					}
+			],
+			newTodoId:4
+	},
+	methods:{
+			addNewTodo:function(){
+				this.todos.push(
+						{
+							id:this.newTodoId++,
+							title:this.newTodoText
+				
+						})
+		
+		},
+		remove:function(){
+			this.newTodoId--;
+			this.todos.pop();
+			console.log("ok");
+		}
+
+	}
+});
+</script>
+	
+	
+</body>
+</html>

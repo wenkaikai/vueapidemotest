@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for 数组渲染的过滤</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div>
+<ul>
+<!-- 计算属性 -->
+	<!-- <li v-for="n of arryListNew">{{n}}</li> -->
+	<!-- methods -->
+	<li v-for="n of fn(arrylist)">{{n}}</li>
+</ul>
+</div>
+
+	<script>
+
+	// 契子 
+	// es5 filter 不会该改原来的数组
+	//array.filter(function(currentValue,index,arr), thisValue)
+	var arry = [1,2,3,4,5];
+	var arry1 = arry.filter(function(value,index,arr){
+		console.log(index);//index的值
+		console.log(arr);//原数组
+		console.log(this);//这个时候this的值就是123
+		return value>2
+	},123);
+	console.log(arry1);
+
+
+/*
+	一计算属性 实现数组的过滤
+ */
+	// new Vue({
+	// 	el:"div",
+	// 	data:{
+	// 		arrylist:[0,1,2,3,4,6,7,8,9,10]
+	// 	},
+	// 	computed:{
+	// 		arryListNew:function(){
+	// 		return this.arrylist.filter(function(value){
+	// 				return value%2==0;
+	// 		});
+	// 	}
+	// 	}
+		
+	// });
+	/*
+		methods 方法实现数组的过滤
+	 */
+	new Vue({
+		el:"div",
+		data:{
+			arrylist:[0,1,2,3,4,6,7,8,9,10]
+		},
+		methods:{
+			fn:function(arrylist){
+					return arrylist.filter(function(value){
+						return value%2==0;
+					})
+			}
+		}
+	})
+	</script>
+</body>
+</html>

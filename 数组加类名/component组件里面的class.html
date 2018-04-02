@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>component class</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<style>
+
+	</style>
+</head>
+<body>
+	<div>
+		<my-component class="class2"></my-component>
+	</div>
+	<script>
+	// 在template 里面加class名字和 my-component里面都可以加类名
+	Vue.component("my-component",{
+		template:"<div class='class1'>双方都是</div>"
+	})
+	new Vue({
+		el:"div"
+	});
+	</script>
+</body>
+</html>

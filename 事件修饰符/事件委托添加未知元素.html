@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件委托添加未知元素</title>
+</head>
+
+
+<body>
+ <ul id="thl">
+   <li>001</li>
+   <li>002</li>
+   <li>003</li>
+</ul>
+<button onclick="fun()">touch</button>
+
+<script>
+    var thl= document.getElementById('thl');
+    debugger;
+    thl.onclick = function(ev) {
+        ev = ev || event;
+        //兼容处理
+        var target = ev.target || ev.srcElement;
+    　　//找到li元素
+        if (target.nodeName.toLowerCase() == 'li') {
+              console.log(target.innerHTML);
+         }
+    };
+
+    function fun(){
+        var node=document.createElement("li");
+        var textnode=document.createTextNode("maomaoliang");
+        node.appendChild(textnode);
+        document.getElementById("thl").appendChild(node);
+    }
+</script>
+</body>
+</html>

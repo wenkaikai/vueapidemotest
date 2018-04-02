@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for comments</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div>
+	<ul>
+		<todo-item v-for="(todo,index) of arry" :key="index" todos="123">
+
+		</todo-item>
+	</ul>
+</div>
+	<script>
+	Vue.component("todo-item",{
+		//todos  这个参数是接收从父作用域传过来的。
+		props:["todos"],
+		template:"<li>haode{{todos}}</li>"
+	})
+	new Vue({
+		el:"div",
+		data:{
+			arry:[1,2,3,4,5]
+		}
+	});
+	</script>
+</body>
+</html>

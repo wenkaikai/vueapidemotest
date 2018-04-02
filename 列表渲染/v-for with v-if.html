@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-for with v-of</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div>
+		<ul>	
+			<!-- 
+				此时的v-if 里面todo.isComplate是false 所以所有的todo都不渲染
+				当然也可以把v-if放在v-for的外面
+			 -->
+			<li  v-for="todo of todos" v-if="todo.isComplete">{{todo}}</li>
+		</ul>
+	</div>
+	<script>
+	var data=["todo1","todo2","todo3"]
+	new Vue({
+		el:"div",
+		data:{
+			todos:data
+		}
+	});
+	console.log(!data[0].isComplete);
+	</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>.capture</title>
+	<style type="text/css">
+        * {
+            margin: 0 auto;
+            text-align:center;
+            line-height: 40px;
+        }
+        div {
+            width: 100px;
+        }
+        #obj1 {
+            background: deeppink;
+        }
+        #obj2 {
+            background: pink;
+        }
+        #obj3 {
+            background: hotpink;
+        }#obj4 {
+             background: #ff4225;
+         }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<!-- 
+	即是给元素添加一个监听器，当元素发生冒泡时，
+	先触发带有该修饰符的元素。若有多个该修饰符，则由外而内触发。
+就是谁有该事件修饰符，就先触发谁。
+加了capture 就有点了事件捕获得味道
+ -->
+<div id="content">
+    <div id="obj1" v-on:click="doc">
+        obj1
+        <div id="obj2" v-on:click="doc">
+            obj2
+            <div id="obj3" v-on:click="doc">
+                obj3
+                <div id="obj4" v-on:click.prevent="doc">
+                obj4
+                <!--点击obj4的时候，弹出的顺序为：obj1、obj2、obj4、obj3；
+                由于1，2有修饰符，故而先触发事件，然后就是4本身触发，最后冒泡事件。
+                -->
+            </div>
+            </div>
+        </div>
+    </div>
+
+<!-- 行间事件默认得时事件冒泡 -->
+    <!-- <div id="obj1" onclick="alert('obj1')">
+        obj1
+        <div id="obj2" onclick="alert('obj2')">
+            obj2
+            <div id="obj3" onclick="alert('obj3')">
+                obj3
+                <div id="obj4" onclick="alert('obj4')">
+                obj4 -->
+                <!--。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。点击obj4的时候，弹出的顺序为：obj1、obj2、obj4、obj3；
+                由于1，2有修饰符，故而先触发事件，然后就是4本身触发，最后冒泡事件。
+                -->
+           <!--  </div>
+            </div>
+        </div>
+    </div> -->
+</div>
+<script type="text/javascript">
+    var content = new Vue({
+        el: "#content",
+        data: {
+            id: ''
+        },
+        methods: {
+            doc: function () {
+                this.id= event.currentTarget.id;
+                alert(this.id)
+            }
+        }
+    })
+</script>
+</body>
+</html>
