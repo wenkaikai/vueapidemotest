@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="watch">
+    firstName:<input type="text" name="li"  v-model="firstName">
+    <br>
+    lastName:<input type="text" name="fei"  v-model="lastName">
+    <p>fullName: {{fullName}}</p>
+    <!-- 上面这样写和下面的一样-->
+    <!--<p>fullName: {{firstName}}{{lastName}}</p>-->
+</div>
+<script>
+    var vm = new Vue({
+        el: '#watch',
+        data: {
+            firstName: 'a',
+            lastName: 'fei',
+            fullName: 'a fei'
+        }
+        ,watch: {
+            firstName: function (val) {
+                this.fullName = val + ' ' + this.lastName
+            },
+            lastName: function (val) {
+                this.fullName = this.firstName + ' ' + val
+            }
+        }
+    })
+    /*
+    在代码中，我们用watch方法监听了firstName和lastName这两个变量，
+    我们在input框框那里做了双绑定，这样子的话，
+    我们在firstName输入框中输入的值就会改变变量firstName的值，
+    同理可得lastName，因为值的改变和watch这货的观察，
+    所以watch里面的function代码就会运行，这样子fullName也就会相应地改变了。
+    这样子$watch这方法的用法也就一下子明了了。
+    上述的例子中$watch就和原生js里面的on-change差不多了。
+以上就是博主对$watch方法的理解了，
+希望可以帮助大家理解这一方法，要是上述有何不对的地方，
+麻烦各位看官多多指出，谢谢大家。
+     */
+    vm.$watch("lastName",function(newVal,oldVal){
+        console.log(newVal)//改变之后的值
+        console.log(oldVal);//改变之前的值
+    })
+</script>
+</body>
+</html>
