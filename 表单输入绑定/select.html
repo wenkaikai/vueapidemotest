@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>select</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="test">
+		<select name="" id="" v-model="selected">
+				<option value="">请选择</option>
+				<option>A</option>
+				<option>B</option>
+				<option>C</option>
+				<option>D</option>
+		</select>
+		<span>
+			Selected:{{selected}}
+		</span>
+	</div>
+	<script>
+	/*
+		这个时候不用写value了
+	 */
+			new Vue({
+				el:"#test",//如果不加#整个代码就没有用
+				data:{
+					selected:''
+				}
+			})
+	</script>
+</body>
+</html>

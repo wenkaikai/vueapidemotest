@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>select多选择</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="test">
+		<select name="" id="" multiple v-model="selected">
+			<option value="">请选择</option>
+			<option >A</option>
+			<option >B</option>
+			<option >C</option>
+			<option >D</option>
+			<option >E</option>
+			<option >F</option>
+		</select>
+		<span>
+			selected:{{selected}}
+		</span>
+	</div>
+	<script>
+	/*
+		这样可以多选
+	 */
+		new Vue({
+			el:"#test",
+			data:{
+				selected:[]
+			}
+		})
+	</script>
+</body>
+</html>

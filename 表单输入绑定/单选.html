@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div>
+		<input type="text" v-model="message">
+		<p>
+			{{message}}
+		</p>
+
+		<label >
+			<input type="radio" v-model="judge" value=1>
+			正确
+		</label>
+		<label >
+			<input type="radio" v-model="judge" value=0>
+			错误
+		</label>
+		<p>
+			{{judge}}
+		</p>
+	</div>
+	
+	<script>
+	/*
+		v-model 会忽略所有表单元素的 value、checked、selected 特性的初始值而总是将 Vue 实例的数据作为数据来源。你应该通过 JavaScript 在组件的 data 选项中声明初始值。
+	 */
+	new Vue({
+		el:"div",
+		data:{
+			message:"12344",
+			judge:""
+		}
+	});
+	</script>
+</body>
+</html>
