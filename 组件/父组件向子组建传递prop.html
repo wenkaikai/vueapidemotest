@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prop</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<!-- 
+		组件实列的作用域是孤立的，这意味着不能（也不应该）在子组件的模板内直接引用父组件的数据
+		父组件的数据需要通过prop才能下发到子组件
+	 -->
+	 <!-- 如果大驼峰的props 则需要用用下划线的方式连接 -->
+	 <div id="test">
+		<my-component message="hello"></my-component>
+		<my-component message="world"></my-component>
+		<my-component message="很方便的哦"></my-component>
+		<my-component1 my-message="这是一个短线连接起来的"></my-component1>
+	 </div>
+	 <script>
+	 	var vm = new Vue({
+	 		el:"#test",
+	 		components:{
+	 			"my-component":{
+	 				props:['message'],
+	 				template:"<div>{{message}}</div>"
+	 			},
+	 			"my-component1":{
+	 				props:['myMessage'],
+	 				template:"<div>{{myMessage}}</div>"
+	 			}
+	 		}
+	 	})
+	 </script>
+</body>
+</html>

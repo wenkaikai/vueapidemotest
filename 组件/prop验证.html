@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prop的验证规则</title>
+	<script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+	<div id="test">
+		<my-component :my-message="'haode'" 
+		:my-message1="1234"
+		:my-message2="{a:123,b:345}"
+		></my-component>
+	</div>
+	<script>
+			Vue.component("my-component",{
+				props:{
+					myMessage:{
+						type:String,
+						required:true
+					},
+					myMessage1:{
+						type:Number,
+						required:true
+					},
+					myMessage2:{
+						type:Object,
+						required:true
+					}
+				},
+				template:`<div>
+				<p>{{myMessage}}</p>
+				<p>{{myMessage1}}</p>
+				<p>{{myMessage2}}</p>
+				</div>`
+			})
+			new Vue({
+				el:"#test"
+			});
+	</script>
+</body>
+</html>

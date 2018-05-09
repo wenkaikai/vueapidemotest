@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>全局注册组件</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<!-- .trim 去除首位空格 -->
+	<div id="test">
+		<firt-component></firt-component>
+	</div>
+	<script>
+	Vue.component("firt-component",{
+		template:"<div>我们都有一个家名字叫中国</div>"
+	});
+		new Vue({
+			el:"#test",
+		});
+	</script>
+</body>
+</html>

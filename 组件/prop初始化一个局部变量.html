@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prop初始化一个局变量</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="test">
+		<my-component my-message="daaa">
+		
+		</my-component>
+		<my-component my-message="haohao">
+		
+		</my-component>
+	</div>
+	<script>
+		new Vue({
+			el:"#test",
+			data:{
+
+			}
+			// ,components:{
+			// 		"my-component":{
+			// 			props:["myMessage"],
+			// 			template:"<div>{{counter}}</div>",
+			// 			data:function(){//每一个component 都有一个data作为局部变量。
+			// 				return {counter:this.myMessage}
+			// 			}
+			// 		}
+			// 	}
+			,components:{
+					"my-component":{
+						props:["myMessage"],
+						template:"<div>{{newMyMessage}}</div>",
+						computed:{
+							newMyMessage:function(){
+								return this.myMessage.trim().toUpperCase()
+							}
+						}
+					}
+				}
+		})
+	</script>
+</body>
+</html>

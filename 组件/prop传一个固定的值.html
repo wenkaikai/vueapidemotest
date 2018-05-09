@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prop 传一个固定的值</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="test">
+		<!-- <my-component my-Message="1"></my-component> -->
+		<my-component v-bind:my-Message="2"></my-component>
+		<!-- 他两有什么区别呢 -->
+	</div>
+	<script>
+		new Vue({
+			el:"#test",
+			components:{
+				"my-component":{
+					props:["myMessage"],
+					template:"<div>{{myMessage}}</div>"
+				}
+			}
+		})
+	</script>
+</body>
+</html>

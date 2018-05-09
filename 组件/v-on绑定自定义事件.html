@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+<div id="counter-event-example">
+  <p>{{ total }}</p>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
+  <button-counter v-on:increment="incrementTotal"></button-counter>
+</div>
+<script>
+	//$emit
+	//绑定自定义事件
+	//绑定的只是事件，但是事件函数要写事件名字。
+	//然后用$emit 触发这个自定义事件等同于触发click事件。
+	new Vue({
+		el:"#counter-event-example",
+		data:function(){
+			return {
+				total:0
+			}
+		},
+		methods:{
+			incrementTotal:function(){
+				this.total+=1;
+			}
+		},
+		components:{
+			"button-counter":{
+				template:"<button @click='incrementBranch'>{{branch}}</button>",
+				data:function(){
+					return {
+						branch:0
+					}
+				},
+				methods:{
+					incrementBranch:function(){
+						this.branch+=1;
+						this.$emit('increment')
+					}
+				}
+			}
+		}
+	})
+</script>
+</body>
+</html>

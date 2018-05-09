@@ -6,7 +6,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
-	<div id="test">
+<!-- 列子一 -->
+	<<!-- div id="test">
 		<select name="" id="" multiple v-model="selected">
 			<option value="">请选择</option>
 			<option >A</option>
@@ -30,6 +31,19 @@
 				selected:[]
 			}
 		})
+	</script> -->
+	<!-- 列子二 -->
+	<div id="test">
+		<select name="" id="">
+			<option v:bind:value="{number:123}">123</option>
+		</select>
+	</div>
+	<script>
+		var vm = new Vue({
+			el:"#test",
+
+		})
+		console.log(typeof vm.selected)
 	</script>
 </body>
 </html>

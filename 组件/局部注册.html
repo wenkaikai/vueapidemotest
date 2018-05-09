@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>局部注册组件</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="test">
+		<first-component></first-component>
+		<second-component></second-component>
+	</div>
+	<script>
+	var child = {
+		template:"<div>我们都有一个家名字叫中国</div>"
+	}
+	new Vue({
+		el:"#test",
+		components:{
+			'first-component':child,
+			'second-component':{
+				template:"<p>好的好的好多和暗红就的</p>"
+			}
+		}
+	})
+	</script>
+</body>
+</html>

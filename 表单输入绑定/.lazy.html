@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>.lazy.html</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="test">
+	<!-- lazy 就是当失去焦点的时候的才实现同步 -->
+		<input type="text" v-model.lazy="msg">
+		<p>
+			{{msg}}
+		</p>
+	</div>
+	<script>
+		new Vue({
+			el:"#test",
+			data:{
+				msg:"haode"
+			}
+		})
+	</script>
+</body>
+</html>

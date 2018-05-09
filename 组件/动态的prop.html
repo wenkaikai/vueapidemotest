@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态的prop</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<!-- input 输入 的值作为新的值传入子组件 -->
+	<div class="test">
+		<input type="text" v-model="message">
+		<!-- 这个时候绑定的即使用了字符串他也是当作一个变量 -->
+		<!-- <my-component v-bind:my-message="message"></my-component> -->
+		<!-- v-bind 可以省略不写 -->
+		<my-component :my-message="message"></my-component>
+	</div>
+	<script>
+	var vm = new Vue({
+		el:".test",
+		components:{
+			"my-component":{
+				props:["myMessage"],
+				template:"<div>{{myMessage}}</div>"
+			}
+		},
+		data:{
+			message:"message from parent"
+		}
+	})
+	</script>
+</body>
+</html>

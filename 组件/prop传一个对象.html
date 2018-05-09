@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>prop一个对象</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="test">
+		<my-component v-bind="todo"></my-component>
+	</div>
+	<script>
+	// 属性里可以有斜线，但是写在中括号里和props里要写小驼峰
+	Vue.component("my-component",{
+		props:["text","isComplete"],
+		template:"<div>{{text}} {{isComplete}}</div>"
+	})
+	new Vue({
+		el:"#test",
+		data:{
+			todo:{
+				text:"learn Vue",
+				isComplete:"12345"
+			}
+		}
+	})
+	</script>
+</body>
+</html>

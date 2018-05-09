@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组件的非prop属性</title>
+	<script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+	<div id="test">
+		<my-component data-value="haode" class="class2"></my-component>
+	</div>
+	<script>
+	// 非 Prop 特性
+	/*
+		非prop属性就是把父组件的属性添加到组件的根元素上
+		此处渲染的结果为<div data-value="haode">haode</div>
+	 */
+	/*
+		传递组件会覆盖组件本身设定的值，但是style和class 特性会更加聪明一些，
+		这两个特性会做合并操作。
+	 */
+		new Vue({
+			el:"#test",
+			components:{
+				"my-component":{
+					template:"<div class='class3'>haode</div>"
+				}
+			}
+		})
+	</script>
+</body>
+</html>

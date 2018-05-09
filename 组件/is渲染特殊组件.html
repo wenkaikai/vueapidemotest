@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>is渲染特殊组件</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<!-- 
+	就是某些标签下只能使用指定的标签，否则无法被浏览器正确解析，例如ul、table、a、select这些。(例如ul一般跟着li，select一般跟着option这样)
+	如果 在特定的标签下面用模板的话这样不乎合html语法的验证，所以用is来指明模板
+ -->
+<div id="test">
+	<table>
+		<thead></thead>
+		<tbody>
+			<tr>
+				<td is="component"></td>
+				<!-- <component></component> -->
+			</tr>
+		</tbody>
+	</table>
+</div>
+	<script>
+	new Vue({
+		el:"#test",
+		components:{
+			component:{
+				template:"<div>好的好的好好的话送饭好分红送的</div>"
+			}
+		}
+	});
+
+	</script>
+</body>
+</html>

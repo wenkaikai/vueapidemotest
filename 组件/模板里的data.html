@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模板里的data</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+	<div id="test">
+		<component></component>
+		<component></component>
+		<component></component>
+		<component></component>
+	</div>
+	<script>
+		var data1 = {counter:0}
+			new Vue({
+				el:"#test",
+				components:{
+					component:{
+						template:"<button v-on:click='counter+=1'>{{counter}}</button>",
+						data:function(){
+							// return data1;//所有的组件公用一个component
+							return {counter:0}
+						}
+					}
+				}
+			})
+	</script>
+</body>
+</html>

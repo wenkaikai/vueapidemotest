@@ -12,7 +12,7 @@
     <p>{{reverseMessage}}</p>
 </div>
 <script>
-    new Vue({
+    var vm = new Vue({
         el:"div",
         data:{
             message:"hello word"
@@ -20,8 +20,10 @@
         computed:{
             /*
                 这样的话这个 reverseMessage 就可以重复的使用。
+                有点类似于对一个变量重新赋值
              */
             reverseMessage:function(){
+                console.log(this);//此时的this就是指的就是vue实例 vm
                 return this.message.split("").reverse().join("");
             }
         }

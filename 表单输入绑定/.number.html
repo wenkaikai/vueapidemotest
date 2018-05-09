@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>.number.html</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<!-- .number 把input里面的值变为数字 -->
+	<div id="test">
+		<input type="number" v-model.lazy.number="num">
+		<p>{{num}}</p>
+	</div>
+	<script>
+		new Vue({
+			el:"#test",
+			data:{
+				num:123
+			}
+		});
+	</script>
+</body>
+</html>
