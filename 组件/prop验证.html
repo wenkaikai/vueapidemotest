@@ -7,10 +7,16 @@
 </head>
 <body>
 	<div id="test">
-		<my-component :my-message="'haode'" 
+	<!-- 	<my-component :my-message="'haode'" 
 		:my-message1="1234"
 		:my-message2="{a:123,b:345}"
+		></my-component> -->
+
+		<my-component v-bind:my-message="'haode'" 
+		v-bind:my-message1="1234"
+		v-bind:my-message2="{a:123,b:345}"
 		></my-component>
+		<!-- 此时和上面是同步的。 -->
 	</div>
 	<script>
 			Vue.component("my-component",{

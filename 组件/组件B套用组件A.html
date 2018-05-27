@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>局部注册组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="test">
+        <first-component>
+           
+        </first-component>
+        
+    </div>
+    <script>
+    var second = {//这是模板一
+        template:`<p>
+        好的好的好多和暗红就的
+        </p>`
+    }
+
+    var child = {// 这是模板二，模板一里面嵌套了模板二
+        components:{
+            'second-component':second
+        },
+        template:`<div>
+         <second-component></second-component>
+        我们都有一个家名字叫中国
+        </div>`
+    }
+    new Vue({
+        el:"#test",
+        components:{
+            'first-component':child
+        }
+    })
+    // vue 里面都是以对象赋值的所以所有的都是以对象为基本单元的
+    </script>
+</body>
+</html>
