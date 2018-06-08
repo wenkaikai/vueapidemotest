@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>禁用继承属性</title>
+	<script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+	<div id="test">
+		<base-input
+		  v-model="username"
+		  class="username-input"
+		  placeholder="Enter your username"
+		></base-input>
+	</div>
+	<script>
+		Vue.component("base-input",{
+			inheritAttrs:false,
+			props:['label','value'],
+			template:`
+				<label>
+				{{label}}
+				<input v-bind='$attrs' v-bind:value='value' v-on:input="$emit('input', $event.target.value)>
+			`
+		})
+		new Vue({
+			el:"#test"
+		})
+	</script>
+</body>
+</html>
