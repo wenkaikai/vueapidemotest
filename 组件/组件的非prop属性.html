@@ -25,7 +25,8 @@
 			el:"#test",
 			components:{
 				"my-component":{
-					template:"<div class='class3'>haode</div>"
+					props:["dataValue"]
+					template:"<div class='class3'>{{dataValue}}</div>"
 				}
 			}
 		})
