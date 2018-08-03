@@ -26,5 +26,22 @@
 		}
 	})
 	</script>
+
+
+<!-- 
+	<div id="test">
+		<my-component v-bind="{text:'learn Vue',isComplete:'12345'}"></my-component>
+	</div>
+	<script>
+		// 属性里可以有斜线，但是写在中括号里和props里要写小驼峰
+		// 传一个对象也是从data里面传过的
+		Vue.component("my-component",{
+			props:["text","isComplete"],
+			template:"<div>{{text}} {{isComplete}}</div>"
+		})
+		new Vue({
+			el:"#test"
+		})
+	</script> -->
 </body>
 </html>
