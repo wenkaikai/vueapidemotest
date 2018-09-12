@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div id="test">
-		<my-component data-value="haode" class="class2"></my-component>
+		<my-component data-value="haode" class="class2" fdsf="rett"></my-component>
 	</div>
 	<script>
 	// 非 Prop 特性
@@ -18,12 +18,15 @@
 	/*
 		传递组件会覆盖组件本身设定的值，但是style和class 特性会更加聪明一些，
 		这两个特性会做合并操作。
+		<div class="class3 class2" data-value="haode" fdsf="rett">haode</div>
+		随便一个属性就能加的上
 	 */
 		new Vue({
 			el:"#test",
 			components:{
 				"my-component":{
-					template:"<div class='class3'>haode</div>"
+					props:["dataValue"],
+					template:"<div class='class3'>{{dataValue}}</div>"
 				}
 			}
 		})

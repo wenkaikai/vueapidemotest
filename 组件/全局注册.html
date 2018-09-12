@@ -8,11 +8,12 @@
 <body>
 <!-- .trim 去除首位空格 -->
 	<div id="test">
-		<firt-component></firt-component>
+		<firt-component v-bind:my-Message="'我啊你中国'"></firt-component>
 	</div>
 	<script>
 	Vue.component("firt-component",{
-		template:"<div>我们都有一个家名字叫中国</div>"
+		props:["myMessage"],
+		template:"<div>{{myMessage}}</div>"
 	});
 		new Vue({
 			el:"#test",

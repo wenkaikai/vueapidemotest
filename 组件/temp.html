@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+	<!-- vue 指令v-bind 绑定单选 -->
+<body>
+<div id="test">
+	<label for="">
+		杯子<input type="checkbox" v-model="sale.if">	
+	</label>
+	<label for="">
+		文件夹<input type="checkbox" v-model="sale.if1">
+	</label>
+	<label for="">
+		风扇<input type="checkbox" v-model="sale.if2">
+	</label>
+	<p>{{sale}}</p>
+</div>
+<script>
+	new Vue({
+		el:"#test",
+		data:function(){
+			return {
+				sale:{if:true,if1:false,if2:true}
+			}
+		}
+	})
+</script>
+</body>
+</html>

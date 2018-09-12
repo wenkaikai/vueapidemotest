@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model</title>
+</head>
+<body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<div id="app">
+  <input type="checkbox" v-model="checked">v-model</input><br/>
+  <label for="checkbox">{{ checked }}</label>
+</div>
+<script>
+  var a= new Vue({
+      el: '#app',
+      data(){ return {checked : true} }
+    }
+  )
+</script> 
+</body>
+</html>

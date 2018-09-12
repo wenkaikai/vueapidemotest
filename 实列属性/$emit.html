@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>$emit</title>
+	<script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+	<div id="test">
+		<my-component v-on:my-event="dosoming"></my-component>
+	</div>
+	<script>
+		new Vue({
+			el:"#test",
+			methods:{
+				dosoming:function(){
+					console.log("ok")
+				}
+			},
+			components:{
+				"my-component":{
+					template:"<div v-on:click='childEvent'>fsdfsd</div>",
+					methods:{
+						childEvent:function(){
+							this.$emit("my-event");
+						}
+					}
+				}
+			},
+
+		})
+	</script>
+</body>
+</html>

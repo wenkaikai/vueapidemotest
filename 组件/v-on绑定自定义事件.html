@@ -16,6 +16,7 @@
 	//绑定自定义事件
 	//绑定的只是事件，但是事件函数要写事件名字。
 	//然后用$emit 触发这个自定义事件等同于触发click事件。
+	//自定义事件是不能自己触发的需要用click 事件来触发他。
 	new Vue({
 		el:"#counter-event-example",
 		data:function(){

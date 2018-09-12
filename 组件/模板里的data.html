@@ -18,9 +18,11 @@
 				el:"#test",
 				components:{
 					component:{
+						// component 就相当于组件的名字。
 						template:"<button v-on:click='counter+=1'>{{counter}}</button>",
 						data:function(){
 							// return data1;//所有的组件公用一个component
+							// 这样每一个模板里的counter 都不是公用的，都是独立的
 							return {counter:0}
 						}
 					}

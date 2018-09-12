@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-model</title>
+</head>
+<body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<div id="app">
+  <input type="text" v-bind:value="searchText" v-on:input="searchText=$event.target.value" />
+  <label for="">{{searchText}}</label>
+</div>
+<script>
+  var a= new Vue({
+      el: '#app',
+     data:{
+     	searchText:true
+     }
+    }
+  )
+</script> 
+</body>
+</html>
