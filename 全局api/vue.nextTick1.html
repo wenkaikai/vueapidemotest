@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="test">
+        <!-- 
+            <firt-component v-bind:my-Message="{{test}}"></firt-component>
+            刚开始这样的加了两个括号怎么都不出结果原因是和小程序弄混了。 属性是不用加大括号的
+         -->
+        <firt-component v-bind:my-Message="test"></firt-component>
+    </div>
+    <script>
+    Vue.component("firt-component", {
+        props: ["myMessage"],
+        template: "<div class='test'>{{myMessage}}</div>"
+    });
+    var vm = new Vue({
+        el: "#test",
+        mounted: function() {},
+        data: {
+            test: "123"
+        }
+    });
+
+    //console.log(vm.test) //123
+   // console.log(vm._data.test) //123 他两是一样的 vm.test
+    vm.test = "2345"
+
+    /*
+     在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+
+     自己总结当我们要更新视图的时候，我们要获取视图的元素的时候需要用nextTick 这个方法
+    */
+    console.log(document.getElementsByClassName("test")[0].textContent) // 123
+    Vue.nextTick(function() {
+        console.log(document.getElementsByClassName("test")[0].textContent) //2345
+    }, {})
+     console.log(document.getElementsByClassName("test")[0].textContent) // 123
+    </script>
+</body>
+
+</html>

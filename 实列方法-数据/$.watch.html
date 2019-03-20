@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$.watch</title>
+     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="test">
+        <input type="text" v-model="login.name">
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#test",
+            data:{
+                login:{
+                    name:"zkw",
+                    password:"wenwenlulu"
+                }
+            }
+        })
+        // 用watch 监听login.name 
+        // 这个时候curVal 和 oldVal 是不一样的 但是如果监听login 这个对象
+
+    // vm.$watch("login.name",function(curVal,oldVal){
+    //     console.log(curVal,oldVal)//zk zkw
+    // },{
+    //     deep:true
+    // })
+
+    // 他两就是一样的
+
+    vm.$watch("login",function(curVal,oldVal){
+        console.log(curVal.name,oldVal.name)//zk zk
+    },{
+        deep:true
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+    }
+    table{
+        /*border:1px solid #ccc;*/
+        text-align:center;
+        margin:30px auto;
+        border-right:1px solid #ccc;  
+        border-bottom:1px solid #ccc;    
+        table-layout: fixed;  
+    }
+    td{
+        border:1px solid #ccc;
+        border-right:none;
+        border-bottom:none;
+        overflow:hidden;
+        height:30px;
+        white-space: nowrap;
+        text-overflow:ellipsis;
+        word-break:break-all;
+    }
+    tr{
+         overflow:hidden;
+        height:30px;
+    }
+    table,tr{
+        width:60%;
+    }
+    #counter-event-example{
+        width:100%;
+        overflow:hidden;
+    }
+</style>
+<body>
+<div id="counter-event-example">
+    <table cellspacing="0" cellpadding="0"  >
+        <tr>
+            <td v-for = "item in title1"> {{item}}</td>
+        </tr>
+
+        <tr v-for="(itemWrap,key,index) in obj">
+            <td v-for="item in itemWrap">{{item}}</td>
+        </tr>
+    </table>
+    <button @click="change">点我切换数组</button>
+</div>
+<script>
+    new Vue({
+        el:"#counter-event-example",
+        data:function(){
+            return {
+                title1:['名称','标准名称','英文名称','缩写','别名','简介'],
+                obj:{
+                    key1:['名称','标准名称','英文名称','缩写','别名','简介'],
+                    keye2:[
+                        '71171CCE239A478A65F9213FE8092CC2',
+                        `高血压急症是指
+                        高血压患者血压在
+                        短时间内(数小时或数天
+                        )显著地急骤升高，同时伴有心、脑、肾、视网膜等重要的靶器官功能损害的一种严重危及生命的临床综合征。高血压急症可见于高血压病和某些继发性高血压，其发生率占高血压患者的5%左右。其特点是血压严重升高（BP>180/120mmHg）并伴发进行性靶器官功能不全的表现。高血压急症需立即进行降压治疗以阻止靶器官进一步损害。`,
+                        '高血压急症',
+                        'Hypertensive emergency',
+                        '10.931131362915039',
+                        '高血压急症'
+                    ]
+                }
+            }
+        },
+        methods:{
+            change:function(){
+                this.title1.pop();
+               let obj = this.obj;
+                for(let a in obj){
+                    obj[a].pop();
+                }
+            }
+        }
+    })
+    
+</script>
+</body>
+</html>

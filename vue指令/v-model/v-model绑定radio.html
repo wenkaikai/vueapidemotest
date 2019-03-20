@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model绑定数组</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    
+<div id="test">
+   
+
+
+    <input type="radio" value="one" v-model = "picked" >one
+   <input type="radio" value="two" v-model = "picked" >two
+</div>
+    <script>
+
+    // radio 绑定v-model 点击单选框改变v-model 里面的值
+      
+        new Vue({
+            el:"#test",
+            data:{
+               arry:[11,22,33],
+               picked:"one"
+            },
+            watch:{
+              picked(newName){
+                console.log(newName)
+              }
+            }
+        });
+    </script>
+</body>
+</html>

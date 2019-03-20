@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computed和methods的区别1</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div>
+        <p>{{name}}</p>
+        <p>{{getName()}}</p>
+        <p>{{number}}</p>
+        <input type="text" v-model="number">
+        <!-- 当改变值的时候方法就会重新计算。 -->
+    </div>
+<script>
+    /**
+        知道为什么每次输入框的值修改就会触发getName函数了因为他每一次的数据修改都触发了视图层。
+    */
+    var app = new Vue({
+        el:"div",
+        data:{
+            firstName:"kaiwen",
+            lastName:"zheng",
+            number:0
+        }
+        // ,computed:{
+        //    name: function(){
+        //         console.log("computed invoked")
+        //        return `${this.firstName} ${this.number}`; // 当return 的值改变的时候
+        //    }
+        // }
+        ,methods:{
+            getName:function(){
+                console.log("methods invoked")
+                return `${this.firstName} ${this.lastName}`;
+            }
+        }
+    })
+</script>
+</body>
+</html>

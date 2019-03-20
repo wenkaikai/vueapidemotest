@@ -18,19 +18,46 @@
 		<my-component1 my-message="这是一个短线连接起来的"></my-component1>
 	 </div>
 	 <script>
-	 	var vm = new Vue({
-	 		el:"#test",
-	 		components:{
-	 			"my-component":{
-	 				props:['message'],//父组件传递了值但是要接收一下
-	 				template:"<div>{{message}}</div>"
-	 			},
-	 			"my-component1":{
-	 				props:['myMessage'],
-	 				template:"<div>{{myMessage}}</div>"
-	 			}
-	 		}
-	 	})
+	 	// 这是第一种写法
+	 	// var vm = new Vue({
+	 	// 	el:"#test",
+	 	// 	components:{
+	 	// 		"my-component":{
+	 	// 			props:['message'],//父组件传递了值但是要接收一下
+	 	// 			template:"<div>{{message}}</div>"
+	 	// 		},
+	 	// 		"my-component1":{
+	 	// 			props:['myMessage'],
+	 	// 			template:"<div>{{myMessage}}</div>"
+	 	// 		}
+	 	// 	}
+	 	// })
+
+
+
+	 	// 这是第二种的写法
+			var vm = new Vue({
+				 		el:"#test",
+				 		components:{
+				 			"my-component":{
+				 				props:['message'],
+				 				template:"<div>{{$props['message']}}</div>",// 取父组件穿过来的值还可以这样写。
+				 				mounted(){
+				 					console.log("子组件")
+				 					console.log(this)
+				 				}
+				 			},
+				 			"my-component1":{
+				 				props:['myMessage'],
+				 				template:"<div>{{$props['myMessage']}}</div>"
+				 			}
+				 		},
+				 		mounted(){
+				 			console.log("父组件")
+				 			console.log(this)
+				 		}
+				 	})
+
 	 </script>
 </body>
 </html>

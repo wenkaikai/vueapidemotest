@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind="$attrs"</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+    <div id="test">
+        <mycomponent message="xiaoxi" type="alert" placeholder="请输入"></mycomponent>
+    </div>
+<body>
+    <script>
+        //v-bind=”$attrs”，这是v-bind唯一可以直接跟等号的特殊写法
+        //v-bind="$attrs" 的意思是把父组价所有的非props 属性全部继承到子组件中
+        // 如果在props 中的属性就不会被继承了
+        Vue.component("mycomponent",{
+            props:["message","type"],
+            template:"<div v-bind='$attrs'>{{$props['message']}}</div>"
+        })
+        new Vue({
+            el:"#test"
+        })
+
+    </script>
+</body>
+</html>

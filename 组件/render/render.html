@@ -17,6 +17,7 @@
   <script>
     Vue.component('tb-heading', {
       render: function(createElement) {
+        console.log(this.$slots.default)
         return createElement(
           'h' + this.level,    // tag name 标签名称
           this.$slots.default  // 组件的子元素

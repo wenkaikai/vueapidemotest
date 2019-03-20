@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>演示Vue</title>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <tb-heading :level="2">
+        <a href="#">Hello world!</a>
+      </tb-heading>
+    </div>
+  </body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+
+  <script>
+    /**
+      这里的createElement(tag,{},[])或者createElement(tag,{},String)类似，不过接收的参数不一样,后面两个参数都是可选的
+    
+    */
+    Vue.component('tb-heading', {
+      render: function(createElement) {
+        //console.log(this.$slots.default )//[le]
+        return createElement(
+          'h' + this.level,    // tag name 标签名称
+            { //这对象就相当于 tag 的配置
+              attrs:{// 这个是属性的配置
+                name:"heading",
+                class:"test"
+              }
+            },
+          this.$slots.default  // 组件的子元素
+        )
+      },
+      props: {
+        level: {
+          type: Number,
+          required: true
+        }
+      }
+    });
+    new Vue({
+      el: '#container'
+    });
+  </script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>具名插槽slot</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+    <my-comp>
+        <template slot="header">
+            <div>这个是头部</div>
+        </template>
+            <div>这是段落一</div>
+            <div>这是短路二</div>
+        <template slot="footer">
+            <div>这是尾部</div>
+        </template>
+    </my-comp>
+</div>
+<script>
+
+    Vue.component('my-comp', {
+        template:
+         `<div>
+            <div>
+                <slot name="header"></slot>
+            </div>
+            <div>
+                <slot></slot>
+            </div> 
+            <div>
+                 <slot name="footer"></slot>
+            </div>
+         </div>`,
+    });
+    new Vue({
+        el: '#app',
+        data: {bar: 0}
+    });
+</script>
+</body>
+</html>

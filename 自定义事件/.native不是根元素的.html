@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>.native不是根元素的</title>
+</head>
+<body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<div id="app">
+  <base-input @focus="cc"></base-input>
+</div>
+<script>
+  // 此处这样用就不行了
+  // 那么怎样让input 也能获取到事件focus呢
+  //$listeners 属性（它是一个对象，里面包含了作用在这个组件上的所有监听器。）
+  // 这个时候子元素用v-on='$listenters'
+   Vue.component("baseInput",{
+    // 这种绑定是不行的事件是事件属性是属性。
+    // template:"<label for=''><input v-bind='$attrs'></input></label>"
+    template:"<label for=''><input v-on='$listeners'></label>"
+   })
+  var a= new Vue({
+      el: '#app',
+      methods:{
+        cc:function(){
+            console.log("okk")
+        }
+      }
+    }
+  )
+</script> 
+</body>
+</html>

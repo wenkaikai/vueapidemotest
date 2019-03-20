@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>render1</title>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+   <div id="app">
+    <child v-bind:level="2">
+        <div>Hello</div>
+        <p> world!</p>
+    </child>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+
+  /**
+    字符串模板的代替方案，允许你发挥 JavaScript 最大的编程能力。该渲染函数接收一个 createElement 方法作为第一个参数用来创建 VNode。
+    如果组件是一个函数组件，渲染函数还会接收一个额外的 context 参数，为没有实例的函数组件提供上下文信息。
+  */
+
+  /**
+    Vue 选项中的 render 函数若存在，则 Vue 构造函数不会从 template 选项或通过 el 选项指定的挂载元素中提取出的 HTML 模板编译渲染函数。
+  */
+
+Vue.component('abc', {
+    template: "<div>abc</div>"
+})
+
+Vue.component('child', {
+    render: function (createElement) {
+        console.log(this.$slots)
+        return createElement(
+            'h' + this.level // tag name 标签名称
+            ,
+            [this.$slots.default[0], createElement("abc"),this.$slots.default[2]] // 子组件中的阵列
+        )
+    },
+    props: {
+        level: {
+            type: Number,
+            required: true
+        }
+    }
+})
+
+new Vue({
+    el: "#app"
+})
+
+</script>
+</html>

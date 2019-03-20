@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>.sync的用法</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+    <div>{{bar}}</div>
+    <my-comp :foo.sync="bar"></my-comp>
+    <!-- <my-comp :foo="bar" @update:foo="val => bar = val"></my-comp> -->
+</div>
+<script>
+  // 问题 .sync 和 双向数据绑定有什么关系呢。
+  // 暂时不理解就记住.sync 就是子组件改变父组件的作用
+    Vue.component('my-comp', {
+        template: '<div @click="increment">点我+1</div>',
+        data: function() {
+            //console.log(this)// VueComponent {} 这时候的this就是指的组件
+            console.log(this.foo)// 初始化的时候只执行了一次 0 这个时候的属性值就是直接暴露的
+            return {copyFoo: this.foo}
+        },
+        props: ['foo'],
+        methods: {
+            increment: function() {
+                this.$emit('update:foo', ++this.copyFoo);
+                // 这是触发新的属性用update:foo 不是方法可以不加update
+                // 
+            }
+        }
+    });
+    new Vue({
+        el: '#app',
+        data: {bar: 5}
+    });
+</script>
+</body>
+</html>

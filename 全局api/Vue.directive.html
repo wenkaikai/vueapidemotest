@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app2">
+  <p>
+      <input type="text" v-focus1="2">
+  </p>
+  
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    /**
+        vue 自定义指令
+    */ 
+
+    Vue.directive('focus1', {
+          // inserted 是钩子函数,钩子函数有如下的参数（el,binding,vnode,oldVnode）
+          inserted: function (el,binding,vnode,oldVnode) {
+            console.log(el)// 指令所绑定的元素，可以用来直接操作 DOM 。
+            console.log(binding)//一个对象，包含以下属性：
+            console.log(vnode)//Vue 编译生成的虚拟节点
+            console.log(oldVnode)//上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用
+            el.focus()
+          }
+    });
+    var vm2=new Vue({
+        el:"#app2",
+        data:{
+            items:[
+                {message:"Test one",id:"1"},
+                {message:"Test two",id:"2"},
+                {message:"Test three",id:"3"}
+            ],
+            items1:1// 可以直接的取值
+        },
+        methods:{
+            btn2Click:function(){
+                //Vue methods中的this 指向的是Vue的实例，这里可以直接在this中找到items
+                Vue.delete(this.items,2)// 把数组的第三项给删除了
+                // Vue.set(this.items,2,{message:"Change Test",id:'10'});
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
+

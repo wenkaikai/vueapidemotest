@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>vue.extend1</title>
+</head>
+<body>
+<div id="app2">
+   <profile></profile>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+
+<script>
+/**
+  extend 是构造一个组件的语法器.
+  你给它参数 他给你一个组件 然后这个组件
+  你可以作用到Vue.component 这个全局注册方法里， 也可以在任意vue模板里使用<profile>组件
+*/
+    var Profile = Vue.extend({
+          template: '<p>{{firstName}} {{lastName}} aka {{alias}} {{"propsData"+data}}</p>',
+          data: function () {
+            return {
+              firstName: 'Walter',
+              lastName: 'White',
+              alias: 'Heisenberg'
+            }
+          },
+          props:['data']
+        })
+    Vue.component('profile',Profile)
+new Vue({
+  el:"#app2"
+})
+</script>
+</body>
+</html>
+

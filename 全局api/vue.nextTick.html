@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        /**
+            nextTick 
+            在数据改变以后不会立即的能获取到dom 里面的元素
+            而是要在Vue.nextTick()的回调函数中国才能获取到dom里面的元素
+            //改变数据
+                vm.message = 'changed'
+
+                //想要立即使用更新后的DOM。这样不行，因为设置message后DOM还没有更新
+                console.log(vm.$el.textContent) // 并不会得到'changed'
+
+                //这样可以，nextTick里面的代码会在DOM更新后执行
+                Vue.nextTick(function(){
+                    console.log(vm.$el.textContent) //可以得到'changed'
+                })
+        */
+    </script>
+    
+</body>
+</html>

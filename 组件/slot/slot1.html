@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slot的用法</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+    <my-comp :foo.sync="bar">
+        <div>我是插槽1</div>
+        <div>我是插槽2</div>
+    </my-comp>
+</div>
+<script>
+ //Vue 实现了一套内容分发的 API，这套 API 基于当前的 Web Components 规范草案，将 <slot> 元素作为承载分发内容的出口。
+ //如果 模板中没有包含一个 <slot> 元素，则任何传入它的内容都会被抛弃
+    Vue.component('my-comp', {
+        template: '<div><slot></slot></div>',
+    });
+    new Vue({
+        el: '#app',
+        data: {bar: 0}
+    });
+</script>
+</body>
+</html>

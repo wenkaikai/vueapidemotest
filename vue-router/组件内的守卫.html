@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件内的守卫</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <div id="app">
+          <h1>Hello App!</h1>
+          <p>
+            <router-link to="/user/我是用户一/post/789">Go to Foo</router-link>
+
+            <!-- 还可以设置多段路径参数 -->
+            <router-link to="/user/我是用户二/post/666">Go to Bar</router-link>
+          </p>
+         
+          <router-view></router-view>
+    </div>
+</body>
+
+ <script>
+          /**
+              正如其名，vue-router 提供的导航守卫主要用来通过跳转或取消的方式守卫导航。有多种机会植入路由导航过程中：全局的, 单个路由独享的, 或者组件级的。
+              记住参数或查询的改变并不会触发进入/离开的导航守卫。你可以通过观察 $route 对象来应对这些变化，或使用 beforeRouteUpdate 的组件内守卫。
+
+              导航守卫的函数是在组件里面的对象里面
+          */
+          const User = { // 组件的名字的首字母要大写
+            template:"<div>User{{$route.params.name}}我的id是{{$route.params.id}}</div>",
+
+            beforeRouteEnter(to,from,next){
+                     // 在渲染该组件的对应路由被 confirm 前调用
+                    // 不！能！获取组件实例 `this`
+                    // 因为当守卫执行前，组件实例还没被创建
+               next(vm => {
+                  // 通过 `vm` 访问组件实例
+                })
+               next()
+
+
+            },
+            beforeRouteUpdate(to,from,next){
+              // 在当前路由改变，但是该组件被复用时调用
+              // 举例来说，对于一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候，
+              // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
+              // 可以访问组件实例 `this`
+
+              // console.log(to.params.name,to.params.id)
+              next()
+
+
+            },
+            beforeRouteLeave(to,from,next){
+                console.log(to)// beforeRouteLeave 不触发是什么原因
+                  // 导航离开该组件的对应路由时调用
+                  // 可以访问组件实例 `this`
+                 const answer = window.confirm('Do you really want to leave? you have unsaved changes!')
+                  if (answer) {
+                    next()
+                  } else {
+                    next(false)
+                  }
+            }
+           
+          }
+           
+
+            const routes = [
+              { path: '/user/:name/post/:id', component: User },
+            ]
+
+            const router = new VueRouter({
+              routes // (缩写) 相当于 routes: routes
+            })
+          
+            const app = new Vue({
+              router
+            }).$mount('#app')
+
+
+  </script>
+  <style>
+  /*
+        要注意，当 <router-link> 对应的路由匹配成功，将自动设置 class 属性值 .router-link-active
+        .router-link-active 是当view 点击选中当前的组件的时候自动添加的类名
+        我们可以这样设置选中的状态。
+  */
+      .router-link-active {
+            color: red;
+        }
+  </style>
+</html>

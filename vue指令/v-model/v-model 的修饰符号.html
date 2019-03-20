@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model绑定数组</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    
+<div id="test">
+   <!-- .number 是把输入的转换为数字 -->
+<!-- <input type="text" v-model.number="text"> -->
+
+
+<!-- .trim 是去除首尾空格 -->
+  <input type="text" v-model.trim="text">
+
+  <!-- .lazy 是onchange 事件 这个我知道和input 区别 -->
+</div>
+    <script>
+
+    // radio 绑定v-model 点击单选框改变v-model 里面  的值
+      
+        new Vue({
+            el:"#test",
+            data:{
+               arry:[11,22,33],
+               picked:"one",
+               text:"0"
+            },
+            watch:{
+              text(newName){
+                console.log(newName)
+                console.log(typeof newName)
+              }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app2">
+    <p v-for="item in items" :key="item.id">
+        {{item.message}}
+    </p>
+    <button class="btn" @click="btn2Click()">删除一个值</button><br/><br/>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+//向响应式对象中添加一个属性，并确保这个新属性同样是响应式的，且触发视图更新。它必须用于向响应式对象上添加新属性，因为 Vue 无法探测普通的新增属性 
+/*
+    删除对象的属性。如果对象是响应式的，确保删除能触发更新视图。这个方法主要用于避开 Vue 不能检测到属性被删除的限制，但是你应该很少会使用它。
+
+    自己总结就是删除对象并响应式
+*/
+    var vm2=new Vue({
+        el:"#app2",
+        data:{
+            items:[
+                {message:"Test one",id:"1"},
+                {message:"Test two",id:"2"},
+                {message:"Test three",id:"3"}
+            ],
+            items1:1// 可以直接的取值
+        },
+        methods:{
+            btn2Click:function(){
+                //Vue methods中的this 指向的是Vue的实例，这里可以直接在this中找到items
+                Vue.delete(this.items,2)// 把数组的第三项给删除了
+                // Vue.set(this.items,2,{message:"Change Test",id:'10'});
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
+

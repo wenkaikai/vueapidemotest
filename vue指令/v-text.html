@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-text</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        .red{
+            color:#ff0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" >
+       <div v-text = "text"></div>
+    </div>
+    <script>
+    /**
+        v-text 是替换了{{text}}
+    */
+        new Vue({
+            el:"#app",
+            methods:{
+                alert:function(){
+                    console.log("1234")
+                    alert("okkk")
+                }
+            },
+            data(){
+                return {text :123}
+            }
+        })
+    </script>
+</body>
+</html>

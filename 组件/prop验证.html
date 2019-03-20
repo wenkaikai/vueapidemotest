@@ -13,7 +13,7 @@
 		></my-component> -->
 
 		<my-component v-bind:my-message="'haode'" 
-		v-bind:my-message1="1234"
+		v-bind:my-message1=" '1234' "
 		v-bind:my-message2="{a:123,b:345}"
 		></my-component>
 		<!-- 此时和上面是同步的。 -->
@@ -27,7 +27,7 @@
 					},
 					myMessage1:{
 						type:Number,
-						required:true
+						defalut:5
 					},
 					myMessage2:{
 						type:Object,

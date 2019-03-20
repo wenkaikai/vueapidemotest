@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这个是不用v-model</title>
+</head>
+<body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<div id="app">
+  <input type="text" v-bind:value="searchText" v-on:input="searchText=$event.target.value" />
+  <label for="">{{searchText}}</label>
+</div>
+<script>
+    // 原生 event 有 event.target.value
+    // vue click 等事件的$event 是原生 event
+  var a= new Vue({
+      el: '#app',
+     data:{
+        searchText:true
+     }
+    }
+  )
+</script> 
+</body>
+</html>

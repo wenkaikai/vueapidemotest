@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app2">
+    <p v-for="item in obj" :key="item">
+        {{item}}
+    </p>
+    <button class="btn" @click="btn2Click()">动态赋值</button><br/><br/>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+//向响应式对象中添加一个属性，并确保这个新属性同样是响应式的，且触发视图更新。它必须用于向响应式对象上添加新属性，因为 Vue 无法探测普通的新增属性 
+    var vm2=new Vue({
+        el:"#app2",
+        data:{
+           obj:{
+            test:"我是一个试验品",
+            test1:"我是试验品一"
+           }
+        },
+        methods:{
+            btn2Click:function(){   
+                Vue.set(this.obj,"test","我是一个试验品修改过后的")
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
+

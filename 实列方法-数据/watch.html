@@ -15,6 +15,7 @@
     <!--<p>fullName: {{firstName}}{{lastName}}</p>-->
 </div>
 <script>
+    //观察 Vue 实例变化的一个表达式或计算属性函数。回调函数得到的参数为新值和旧值。表达式只接受监督的键路径。对于更复杂的表达式，用一个函数取代。
     var vm = new Vue({
         el: '#watch',
         data: {
@@ -23,7 +24,7 @@
             fullName: 'a fei'
         }
         ,watch: {
-            firstName: function (val) {
+            firstName: function (val,val1) {// val 是新的值,val1 是旧的值
                 this.fullName = val + ' ' + this.lastName
             },
             lastName: function (val) {
@@ -31,6 +32,8 @@
             }
         }
     })
+
+    
     /*
     在代码中，我们用watch方法监听了firstName和lastName这两个变量，
     我们在input框框那里做了双绑定，这样子的话，
@@ -39,10 +42,8 @@
     所以watch里面的function代码就会运行，这样子fullName也就会相应地改变了。
     这样子$watch这方法的用法也就一下子明了了。
     上述的例子中$watch就和原生js里面的on-change差不多了。
-以上就是博主对$watch方法的理解了，
-希望可以帮助大家理解这一方法，要是上述有何不对的地方，
-麻烦各位看官多多指出，谢谢大家。
      */
+     
     vm.$watch("lastName",function(newVal,oldVal){
         console.log(newVal)//改变之后的值
         console.log(oldVal);//改变之前的值

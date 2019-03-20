@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>.capture</title>
+    <style type="text/css">
+       
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="demo">
+  <button v-on:click="show = !show">
+    Toggle
+  </button>
+  <transition name="fade"  >
+    <p v-show="show">hello</p>
+  </transition>
+</div>
+<script type="text/javascript">
+   new Vue({
+      el: '#demo',
+      data: {
+        show: true
+      }
+    })
+   /**
+    v-enter v-enter-active v-enter-to  过度一共是这个六个类名自己添加
+
+    v-leave v-leave-active v-leave-to
+
+    对于消失和隐藏 抓住三个状态 第一个是0 ， 第二个是0.5，第三个是1
+
+    enter 是刚进入 enter-to 是完全进入
+
+    leave 是刚离开  leave-to 是完全离开
+    
+   */
+</script>
+<style>
+    .fade-enter-active, .fade-leave-active {
+         transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to  {
+      opacity: 0;
+    }
+    .fade-enter-to,fade-leave{
+       opacity:1 
+    }
+
+
+    /*.custom-appear-class{
+      opacity: 0;
+    }*/
+      /*.fade-leave-active,.fade-enter-active {
+         transition: opacity .5s;
+    }
+    }
+  .fade-leave-to,.fade-endter{
+      opacity: 0;
+    }
+    .fade-enter-to,.fade-leave{
+       opacity:1 
+    }*/
+</style>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model绑定数组</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    
+<div id="test">
+   <ul>
+     <li v-for = "item in arry" :key="item">{{item}}</li>
+   </ul>
+   <!-- 如果checkbox 绑定的value 不是数组里面的值就是增加 -->
+<!--    <input type="checkbox" v-model = "arry" :value="1">11
+   <input type="checkbox" v-model = "arry" :value="2">22
+   <input type="checkbox" v-model = "arry" :value="3">33 -->
+
+   <!-- 如果是数组里面值就是动态的绑定了 -->
+
+    <input type="checkbox" v-model = "arry" :value="11">11
+   <input type="checkbox" v-model = "arry" :value="22">22
+   <input type="checkbox" v-model = "arry" :value="33">33
+</div>
+    <script>
+      
+        new Vue({
+            el:"#test",
+            data:{
+               arry:[11,22,33]
+            },
+              methods:{
+                aaa:function(aa){
+                    console.log(aa);//返回的是点击以后的状态。
+                }
+              }
+        });
+    </script>
+</body>
+</html>

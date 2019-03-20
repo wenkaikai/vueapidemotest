@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$emit子组件向父组件传值</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+    <div id="emit-example-argument">
+        <magic-eight-ball v-on:give-advice="showAdvice"></magic-eight-ball>
+    </div>
+    <script>
+         //$emit 触发当前实例上的事件。附加参数都会传给监听器回调。
+        Vue.component('magic-eight-ball', {
+              data: function () {
+                return {
+                  possibleAdvice: ['Yes', 'No', 'Maybe']
+                }
+              },
+              methods: {
+                giveAdvice: function () {
+                  var randomAdviceIndex = Math.floor(Math.random() * this.possibleAdvice.length)
+                  this.$emit('give-advice', this.possibleAdvice[randomAdviceIndex])
+                }
+              },
+              template: `
+                <button v-on:click="giveAdvice">
+                  Click me for advice
+                </button>
+              `
+        })
+
+
+        new Vue({
+          el: '#emit-example-argument',
+          methods: {
+            showAdvice: function (advice) {
+              alert(advice)
+            }
+          }
+        })
+    </script>
+</body>
+</html>

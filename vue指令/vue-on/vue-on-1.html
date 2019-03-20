@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app" v-on:click="alert">
+        快点点击我1
+    </div>
+     <div id="app1" v-on:click="alert2('okkk',$event)">
+        快点点击我2
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            methods:{
+                alert:function(){
+                    console.log("1234")
+                    alert("okkk")
+                },
+                alert2:function(value1,value2){
+                    console.log(value1)
+                    console.log(value2)
+                }
+            }
+        })
+
+    new Vue({
+            el:"#app1",
+            methods:{
+                alert:function(){
+                    console.log("1234")
+                    alert("okkk")
+                },
+                alert2:function(value1,value2){
+                    console.log(value1)//okkk
+                    console.log(value2)//MouseEvent 
+                }
+            }
+        })
+
+//         绑定事件监听器。事件类型由参数指定。表达式可以是一个方法的名字或一个内联语句，如果没有修饰符也可以省略。
+// 用在普通元素上时，只能监听原生 DOM 事件。用在自定义元素组件上时，也可以监听子组件触发的自定义事件。
+
+// 在监听原生 DOM 事件时，方法以事件为唯一的参数。如果使用内联语句，语句可以访问一个 $event 属性：v-on:click="handle('ok', $event)"。
+
+// 从 2.4.0 开始，v-on 同样支持不带参数绑定一个事件/监听器键值对的对象。注意当使用对象语法时，是不支持任何修饰器的。
+  
+    </script>
+</body>
+</html>

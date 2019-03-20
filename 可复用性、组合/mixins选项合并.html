@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app2">
+    <p v-for="item in obj" :key="item">
+      
+    </p>
+    <button class="btn" @click="btn2Click()">动态赋值</button><br/><br/>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+/**
+  当组件和混入对象含有同名选项时，这些选项将以恰当的方式混合。
+比如，数据对象在内部会进行浅合并 (一层属性深度)，在和组件的数据发生冲突时以组件数据优先。
+*/
+       var mixin = {
+        data: function () {
+          return {
+            message: 'hello',
+            foo: 'abc'
+          }
+        }
+      }
+
+  new Vue({
+    mixins: [mixin],
+    data: function () {
+      return {
+        message: 'goodbye',
+        bar: 'def'
+      }
+    },
+    created: function () {
+      console.log(this.$data)
+      // => { message: "goodbye", foo: "abc", bar: "def" }
+    }
+  })
+
+</script>
+</body>
+</html>
+

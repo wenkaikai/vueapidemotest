@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域插槽 | 带数据的插槽</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+    <my-comp>
+         <template slot-scope="aaa">
+                <div class="tmpl">
+                  <div v-for="item in aaa.data">{{item}}</div>
+                </div>
+      </template>
+    </my-comp>
+</div>
+<script>
+    /*
+      slot-scope  就相当于props一样 取出来子组件传过来的值。
+
+        但是作用域插槽要求，在slot上面绑定数据。也就是你得写成大概下面这个样子。
+
+        就是插槽里面要带数据,
+        先组件后插槽 一步一步的来。  
+        父组件子组件插槽要搞清楚
+    */
+
+    Vue.component('my-comp', {
+        template:
+         `<div>
+            <div class="text">
+                    <slot :data="data"></slot>
+            </div>
+            
+         </div>`,
+        data:function(){ return {data: ['zhangsan','lisi','wanwu','zhaoliu','tianqi','xiaoba']}} 
+    });
+    new Vue({
+        el: '#app'
+    });
+</script>
+</body>
+</html>

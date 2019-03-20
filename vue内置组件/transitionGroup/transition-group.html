@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>transition-group</title>
+    <style type="text/css">
+       
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+  <div id="list-demo" class="demo">
+      <button v-on:click="add">Add</button>
+      <button v-on:click="remove">Remove</button>
+      <!-- 
+        tag 就是 包裹在span 外面的大标签
+       -->
+      <transition-group name="list" tag="p">
+        <span v-for="item in items" v-bind:key="item" class="list-item">
+          {{ item }}
+        </span>
+      </transition-group>
+</div>
+<script type="text/javascript">
+
+    /**
+            不同于 <transition>，它会以一个真实元素呈现：默认为一个 <span>。你也可以通过 tag 特性更换为其他元素。
+            过渡模式不可用，因为我们不再相互切换特有的元素。
+            内部元素 总是需要 提供唯一的 key 属性值。
+    */
+  new Vue({
+      el: '#list-demo',
+      data: {
+        items: [1,2,3,4,5,6,7,8,9],
+        nextNum: 10
+      },
+      methods: {
+        randomIndex: function () {
+          return Math.floor(Math.random() * this.items.length)
+        },
+        add: function () {
+          this.items.splice(this.randomIndex(), 0, this.nextNum++)
+        },
+        remove: function () {
+          this.items.splice(this.randomIndex(), 1)
+        },
+      }
+})
+</script>
+<style>
+   /* 可以设置不同的进入和离开动画 */
+/* 设置持续时间和动画函数 */
+   .list-item {
+          display: inline-block;
+          margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to
+/* .list-leave-active for below version 2.1.8 
+
+    enter  是刚刚进入
+    leave-to 完全离开
+
+*/ {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+</style>
+</body>
+</html>

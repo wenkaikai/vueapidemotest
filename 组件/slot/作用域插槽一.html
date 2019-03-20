@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域插槽 | 带数据的插槽</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+    <my-comp>
+         <template slot-scope="props" slot="slot1">
+                <div class="tmpl" >
+                  <!-- 所以说props 是解说 slot标签传过来的所有的值 -->
+                  <!-- poprs.name 是获取不到的 -->
+                  {{props.name}}
+                  {{props.value}}
+                   {{props.data}}
+
+                   <!-- props.text 是可以获取到的 -->
+                     {{props.text}}
+                </div>
+        </template>
+        <!-- 这里的props 是 slot 所有属性里面传过来的值 -->
+        <template slot-scope="props" slot="slot2">
+                <div class="tmp2" >
+                  {{props.value1}}
+                </div>
+        </template>
+    </my-comp>
+</div>
+<script>
+    /*
+      
+    */
+
+    Vue.component('my-comp', {
+        template:
+         `<div>
+            <div class="text">
+                    <slot :data="data" value="789" name="slot1" text=" text "></slot>
+                     <slot value1 = "fds" value="900" name="slot2"></slot>
+            </div>
+            
+         </div>`,
+        data:function(){ return {data: ['zhangsan','lisi','wanwu','zhaoliu','tianqi','xiaoba']}} 
+    });
+    new Vue({
+        el: '#app'
+    });
+</script>
+</body>
+</html>

@@ -41,11 +41,14 @@
 					incrementBranch:function(){
 						this.branch+=1;
 						this.$emit('increment')//触发事件类似于trigger("click")
+						// 这里的emit 的事件 事件就是组件的里面的v-on 绑定的事件。
 					}
 				}
 			}
 		}
 	})
+	// 所以说没有所谓的自定义事件，到最后都要回归原始的的浏览器默认的各种事件。
+	//就是组件里面的自定义事件里面的事件要靠真实的click 事件来触发
 </script>
 </body>
 </html>

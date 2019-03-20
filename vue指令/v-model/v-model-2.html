@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model-2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <!-- 这样直接不就可以把输入框里面的value 和 p 标签里面的value 绑定在一起了
+      在表单控件或者组件上创建双向绑定
+     -->
+<div id="test">
+   <input type="text" v-model="value1">
+   <p> {{value1}}</p>
+</div>
+    <script>
+        new Vue({
+            el:"#test",
+            data:{
+                value1:120
+            },
+              methods:{
+                aaa:function(aa){
+                    console.log(aa);//返回的是点击以后的状态。
+                }
+              }
+        });
+    </script>
+</body>
+</html>

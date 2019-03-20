@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标移出来和鼠标移入事件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        ul.style > li{
+            border:1px solid red;
+            line-height: 40px;
+            margin:20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul :class="[aaa]">
+            <li @mouseenter = "enter" @mouseleave = "leave" >鼠标移出来和鼠标移入事件</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el:"div",
+            data:{
+                aaa:"style"
+            },
+            methods:{
+               enter(a){
+                console.log(a)
+                console.log(a.target.innerHTML)
+               },
+               leave(){
+                console.log("鼠标一出来了")
+               }
+            }
+
+        })
+    </script>
+</body>
+</html>

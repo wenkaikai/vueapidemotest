@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="test">
+    <component @click.native="clickme"></component> 
+</div>
+<script>
+    new Vue({
+        el:"#test",
+        data(){
+            return {
+                "name":"please chick me from global"
+            }
+        },
+        methods:{
+            clickme(){
+                alert("123")
+            }
+        },
+        components:{
+            component:{
+                // template:"<div>{{this.data.name}}</div>"
+                template:"<div>{{name}}</div>",
+                data(){
+                    return {
+                        "name":"please chick me from local"
+                    }
+                },
+            },
+            
+        }
+    })
+</script>
+</body>
+</html>

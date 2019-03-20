@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watch2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+</head>
+<body>
+    <div id="app">
+        <div class="password">
+            <label for="">第二次输入密码</label>
+            <input type="text" placeholder="请再次输入密码" v-model="password2">
+        </div>
+    </div>
+    <script>
+          //观察 Vue 实例变化的一个表达式或计算属性函数。回调函数得到的参数为新值和旧值。表达式只接受监督的键路径。对于更复杂的表达式，用一个函数取代。
+        new Vue({
+            el:"#app",
+            data:{password2:""},
+            watch:{
+                password2:function(curVal,oldVal){
+                    console.log(curVal,oldVal)//curVal 是当前的值 oldVal是改变之前的值
+                }
+            }
+        })
+    </script>
+</body>
+</body>
+</html>

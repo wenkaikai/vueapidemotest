@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>model 选项</title>
+</head>
+<body>
+  <div id="app2">
+    <my-checkbox v-model="foo" value="some value"></my-checkbox>
+    <p>{{foo}}</p>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+/**
+  允许一个自定义组件在使用 v-model 时定制 prop 和 event。默认情况下，一个组件上的 v-model 会把 value 用作 prop 且把 input 用作 event，但是一些输入类型比如单选框和复选框按钮可能想使用 value prop 来达到不同的目的。使用 model 选项可以回避这些情况产生的冲突。
+*/
+   Vue.component('my-checkbox', {
+    // 这个model的配置要先作用于 props  props配置是要依赖于model 的
+      model: {
+        prop: 'checked1',
+        event: 'change1'
+      },
+      props: {
+        // this allows using the `value` prop for a different purpose
+        value: String,
+        // use `checked` as the prop which take the place of `value`
+        checked1: {
+          type: Boolean,
+          default: 0
+        }
+      },
+      template:`
+        <input type="checkbox" @change="handeleInput" :checked="checked1">
+      `  ,
+      methods:{
+        handeleInput(e){
+          this.$emit('change1',e.target.checked) // 这个时候触发change1 就是父组件的input 上文的model 就目前看就是重命名的作用
+        }
+      }
+})
+new Vue({
+  el:"#app2",
+  data(){
+    return {
+      foo:true
+    }
+  }
+})
+
+</script>
+</body>
+</html>
+

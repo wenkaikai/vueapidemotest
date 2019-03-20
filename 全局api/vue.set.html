@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app2">
+    <p v-for="item in items" :key="item.id">
+        {{item.message}}
+    </p>
+    <button class="btn" @click="btn2Click()">动态赋值</button><br/><br/>
+    <button class="btn" @click="btn3Click()">为data新增属性</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+//向响应式对象中添加一个属性，并确保这个新属性同样是响应式的，且触发视图更新。它必须用于向响应式对象上添加新属性，因为 Vue 无法探测普通的新增属性 
+    var vm2=new Vue({
+        el:"#app2",
+        data:{
+            items:[
+                {message:"Test one",id:"1"},
+                {message:"Test two",id:"2"},
+                {message:"Test three",id:"3"}
+            ],
+            items1:1// 可以直接的取值
+        },
+        methods:{
+            btn2Click:function(){
+                //Vue methods中的this 指向的是Vue的实例，这里可以直接在this中找到items
+                console.log(this)
+                Vue.set(this.items,2,{message:"Change Test",id:'10'})
+            },
+            btn3Click:function(){
+                var itemLen=this.items.length;
+                Vue.set(this.items,itemLen,{message:"Test add attr",id:itemLen});
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
+

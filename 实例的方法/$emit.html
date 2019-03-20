@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$emit</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+    <div id="test">
+        <my-component v-on:my-event="dosoming"></my-component>
+    </div>
+    <script>
+        //$emit 触发当前实例上的事件。附加参数都会传给监听器回调。
+        new Vue({
+            el:"#test",
+            methods:{  
+                dosoming:function(e,e1,e2){
+                    console.log("ok")
+                    console.log(e)
+                    console.log(e1)
+                     console.log(e2)
+                }
+            },
+            components:{
+                "my-component":{
+                    template:"<div v-on:click='childEvent'>fsdfsd</div>",
+                    methods:{
+                        childEvent:function(){
+                            this.$emit("my-event","我是传过来的参数",123,456);
+                        }
+                    }
+                }
+            },
+
+        })
+    </script>
+</body>
+</html>

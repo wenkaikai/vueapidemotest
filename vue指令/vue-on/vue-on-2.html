@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-on 绑定多个方法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <!-- v-on 绑定多个方法 -->
+    <div id="app">
+        <input type="text" v-on="{click:method1,input:method2}">
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            methods:{
+                method1:function(){
+                    console.log("这是第一个方法")
+                },
+                method2:function(){
+                    console.log("这是第二个方法")
+                }
+               
+            }
+        })
+    </script>
+</body>
+</html>

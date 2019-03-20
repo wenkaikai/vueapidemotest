@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>checkbox</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+        <div id="app">  
+        <label>jack<input type="checkbox" v-model="person.jack"/></label>  
+        <label>bob<input type="checkbox" v-model="person.bob"/></label>  
+        <label>alice <input type="checkbox" v-model="person.alice"/></label>  
+        <p>已选：{{person}}</p>  
+    </div>  
+    <script>  
+        /*
+            这样绑定能直接实现false 和 true
+        */
+        var app = new Vue({  
+            el: '#app',  
+            data: {  
+                person: {jack: false, bob: false, alice: false}  
+            }  
+        })  
+    </script>  
+</body>
+</html>

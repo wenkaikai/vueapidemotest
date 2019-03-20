@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-model-1</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <!-- v-model 官方的用法
+        在表单控件或者组件上创建双向绑定。细节请看下面的教程链接。
+     -->
+<div id="test">
+    <base-checkbox v-model="lovingVue" v-on:change="aaa"></base-checkbox>
+    {{lovingVue}}
+</div>
+    <script>
+        Vue.component('base-checkbox', {
+              model: {
+                prop: 'checked',
+                event: 'change'
+              },
+              props: {
+                checked: Boolean
+              },
+              template: `
+                <input
+                  type="checkbox"
+                  v-bind:checked="checked"
+                  v-on:change="$emit('change', $event.target.checked)"
+                >
+              `
+            })
+        new Vue({
+            el:"#test",
+            data:{
+                lovingVue:true
+            },
+              methods:{
+                aaa:function(aa){
+                    console.log(aa);//返回的是点击以后的状态。
+                }
+              }
+        });
+    </script>
+</body>
+</html>

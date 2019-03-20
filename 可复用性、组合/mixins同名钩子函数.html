@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app2">
+    <p v-for="item in obj" :key="item">
+      
+    </p>
+    <button class="btn" @click="btn2Click()">动态赋值</button><br/><br/>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+/**
+  同名钩子函数将混合为一个数组，因此都将被调用。另外，混入对象的钩子将在组件自身钩子之前调用。
+*/
+ var mixin = {
+  created: function () {
+    console.log('混入对象的钩子被调用')// 混入的钩子先调用
+  }
+}
+
+new Vue({
+  mixins: [mixin],
+  created: function () {
+    console.log('组件钩子被调用')
+  }
+})
+
+</script>
+</body>
+</html>
+

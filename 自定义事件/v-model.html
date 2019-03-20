@@ -7,15 +7,16 @@
 <body>
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <div id="app">
-  <input type="checkbox" v-model="checked">v-model</input><br/>
-  <label for="checkbox">{{ checked }}</label>
+    <input type="checkbox" v-model="test">
+    <label for="checkbox">{{test}}</label> 
 </div>
 <script>
-  var a= new Vue({
-      el: '#app',
-      data(){ return {checked : true} }
-    }
-  )
+    new Vue({
+        el:"#app",
+        data(){
+            return {test:true}
+        }
+    })
 </script> 
 </body>
 </html>

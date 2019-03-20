@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>.capture</title>
+    <style type="text/css">
+       
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+  <div id="example-2">
+  <button @click="show = !show">Toggle show</button>
+  <transition name="bounce">
+    <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+  </transition>
+</div>
+<script type="text/javascript">
+/**
+  自定义过渡的类名
+    enter-class
+    enter-active-class
+    enter-to-class (2.1.8+)
+    leave-class
+    leave-active-class
+    leave-to-class (2.1.8+)
+*/
+ new Vue({
+  el: '#example-2',
+  data: {
+    show: true
+  }
+})
+</script>
+<style>
+  .bounce-enter-active {
+    animation: bounce-in .5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in .5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+</style>
+</body>
+</html>

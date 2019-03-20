@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slot 插槽的默认内容</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+    <my-comp>
+       <template>
+            upload
+            <!-- 如果没有upload 就是submit(默认的) -->
+       </template>
+    </my-comp>
+</div>
+<script>
+    Vue.component('my-comp', {
+        template:
+         `<button type="submit">
+            <slot>submit</slot>
+         </button>`,
+    });
+    new Vue({
+        el: '#app',
+        data: {bar: 0}
+    });
+</script>
+</body>
+</html>

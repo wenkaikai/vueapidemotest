@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>.capture</title>
+    <style type="text/css">
+       
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+  <div id="example-1">
+    <transition name="slide-fade" appear
+          v-on:before-enter="beforeEnter"
+          v-on:enter="enter"
+          v-on:after-enter="afterEnter"
+          v-on:enter-cancelled="enterCancelled"
+
+          v-on:before-leave="beforeLeave"
+          v-on:leave="leave"
+          v-on:after-leave="afterLeave"
+          v-on:leave-cancelled="leaveCancelled"
+    >
+  <p >hello</p>
+</transition>
+  </div>
+<script type="text/javascript">
+  new Vue({
+      el: '#example-1',
+      data: {
+        show: true
+      },
+      methods: {
+                      // --------
+                      // 进入中
+                      // --------
+
+                      beforeEnter: function (el) {
+                        // ...
+                        console.log(el)
+                      },
+                      // 当与 CSS 结合使用时
+                      // 回调函数 done 是可选的
+                      enter: function (el, done) {
+                        // ...
+                        console.log(done)
+                        done()
+                      },
+                      afterEnter: function (el) {
+                        // ...
+                      },
+                      enterCancelled: function (el) {
+                        // ...
+                      },
+
+                      // --------
+                      // 离开时
+                      // --------
+
+                      beforeLeave: function (el) {
+                        // ...
+                      },
+                      // 当与 CSS 结合使用时
+                      // 回调函数 done 是可选的
+                      leave: function (el, done) {
+                        // ...
+                        done()
+                      },
+                      afterLeave: function (el) {
+                        // ...
+                      },
+                      // leaveCancelled 只用于 v-show 中
+                      leaveCancelled: function (el) {
+                        // ...
+                      }
+      }
+  })
+</script>
+<style>
+ 
+    .slide-fade-enter-active {
+      transition: all 2s ease;
+    }
+   .slide-fade-leave-active {
+      transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+    {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>computed和methods的区别</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div>
+        <p>{{date}}</p>
+        <p>{{newDate()}}</p>
+    </div>
+<script>
+    var app = new Vue({
+        el:"div",
+        data:{
+            date1:"123"
+        }
+        ,computed:{
+           date: function(){
+               return new Date();
+           }
+        }
+        ,methods:{
+            newDate:function(){
+                function b(){
+                                    console.log("我是b方法")
+                            }
+                
+                b();
+                return new Date();
+            }
+            
+        }
+    })
+</script>
+</body>
+</html>

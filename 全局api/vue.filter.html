@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app2">
+  <p>
+      <input type="text" v-model="message">
+      <p>{{message|capitalize(1,2)}}</p>
+  </p>
+  
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    /**
+        vue 自定义指令
+    */ 
+
+    Vue.filter('capitalize',function(value,...set){
+        // 这里直接是把小写的字母变成大写
+        //过滤器是 JavaScript 函数，因此可以接收参数
+        console.log(set)// [1,2]
+       return value.toUpperCase();
+    });
+    var vm2=new Vue({
+        el:"#app2",
+        data:{
+            message:""
+        },
+        methods:{
+            btn2Click:function(){
+                //Vue methods中的this 指向的是Vue的实例，这里可以直接在this中找到items
+                Vue.delete(this.items,2)// 把数组的第三项给删除了
+                // Vue.set(this.items,2,{message:"Change Test",id:'10'});
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
+

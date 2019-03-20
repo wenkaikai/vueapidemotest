@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这个是不用v-model</title>
+</head>
+<body>
+<script src="https://unpkg.com/vue/dist/vue.js">
+  // 将原生事件绑定在组件上初次见她怎么理解这个呢
+   //你可能有很多次想要在一个组件的根元素上直接监听一个原生事件。这时，你可以使用 v-on 的 .native 修饰符：
+</script>
+<div id="app">
+    <my-comp @click.native="doThis"></my-comp>
+    <div @click="doThis">我是元素</div>
+</div>
+<script>
+    Vue.component('my-comp', {
+        template: '<div>我是组件</div>'
+    });
+    new Vue({
+        el: '#app',
+        methods: {
+            doThis: function() {
+                console.log('click');
+            }
+        }
+    });
+</script>
+</body>
+</html>

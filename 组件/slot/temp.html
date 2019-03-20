@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+    <my-comp>
+       
+    </my-comp>
+</div>
+<script>
+    /*
+      slot-scope  就相当于props一样 取出来子组件传过来的值。
+
+        但是作用域插槽要求，在slot上面绑定数据。也就是你得写成大概下面这个样子。
+
+        就是插槽里面要带数据,
+        先组件后插槽 一步一步的来。  
+        父组件子组件插槽要搞清楚
+    */
+
+    Vue.component('my-comp', {
+        template:
+         `<div>
+            <div  @click="aa" :class= "[{actived:class1}]">
+            {{class1}}
+                      点点点
+            </div>
+            
+         </div>`,
+       data(){
+        return {
+          arry:[],
+          class1:true
+        }
+       },
+       mounted(){
+        this.arry[0] = true;
+       },
+       methods:{
+        aa(){
+          this.arry[0] = !this.arry[0]
+          this.class1 = this.arry[0];
+        }
+       }
+    });
+    new Vue({
+        el: '#app'
+    });
+</script>
+<style>
+  .actived{
+    color:red;
+  }
+</style>
+</body>
+</html>

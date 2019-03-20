@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态的prop</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<!-- input 输入 的值作为新的值传入子组件 -->
+    <div class="test">
+        <template v-for="aa in obj">
+            <div>haode</div>
+        </template>
+    </div>
+    <script>
+    var vm = new Vue({
+        el:".test",
+        components:{
+            "my-component":{
+                props:["myMessage"],// template 里面要是一个变量就必须要传递过来。
+                template:"<div>{{myMessage}}</div>"
+            }
+        },
+        data:{
+            obj:[1,2,3]
+        }
+    })
+    </script>
+</body>
+</html>

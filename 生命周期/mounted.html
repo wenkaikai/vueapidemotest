@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div id="test">
+    <div @click="test">触发mounted</div>
+</div>
+<script>
+    new Vue({
+        el:"#test",
+        methods:{
+            test:function(){
+               console.log(this.$options.mounted[0].call())
+            }
+        },
+        data(){
+            return {
+                aa:[9]
+            }
+        },
+        mounted(){
+            console.log("mounted invoked")
+        }
+        
+    })
+</script>
+</body>
+</html>

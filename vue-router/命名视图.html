@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>命名视图</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <!-- 
+        命名视图是一个路径显示多个组件并且每个组件都有一个名字
+        命名视图name 是router-view 里面的 对应的要显示的的值是components这个对象里面的key值
+     -->
+    <div id="app">
+        <h1>Named Views</h1>
+        <ul>
+            <li>
+                <router-link to="/">/</router-link>
+            </li>
+            <li>
+                <router-link to="/other">/other</router-link>
+            </li>
+        </ul>
+        <router-view class="view one"></router-view>
+        <!--  <router-view class="view two" name="a"></router-view>
+          <router-view class="view three" name="b"></router-view> -->
+    </div>
+    <script>
+    const Foo = { template: '<div>foo</div>' }
+    const Bar = { template: '<div>bar</div>' }
+    const Baz = { template: '<div>baz</div>' }
+    const router = new VueRouter({
+        // mode: 'history', history 是一个什么模式
+
+        routes: [{
+                path: '/',
+                // a single route can define multiple named components
+                // which will be rendered into <router-view>s with corresponding names.
+                /**
+                  自己的总结当我们调转路由的时候我们的一个组件就是对应的是一个路由，
+                  为什么一个router-view 要对应一个唯一的页面，因为要是多个页面的话router-view 也不知道怎么显示。
+                */
+                components: {
+                  default: Foo,
+                  a: Bar,
+                  b: Baz
+                }
+            },
+            {
+                path: '/other',
+                components: {
+                    default: Baz,
+                    a: Bar,
+                    b: Foo
+                }
+            }
+        ]
+    })
+    new Vue({
+        router,
+        el: '#app'
+    })
+    </script>
+</body>
+
+</html>

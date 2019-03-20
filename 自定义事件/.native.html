@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>.native</title>
+</head>
+<body>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<div id="app">
+  <base-input @click.native="cc"></base-input>
+</div>
+<script>
+  //.native修饰符：将原生事件绑定到组件的根元素上 
+  // 在此处是一点问题都没有的
+   Vue.component("baseInput",{
+    template:"<div>fdsf</div>"
+   })
+  var a= new Vue({
+      el: '#app',
+      methods:{
+        cc:function(){
+            console.log("okk")
+        }
+      }
+    }
+  )
+</script> 
+</body>
+</html>
