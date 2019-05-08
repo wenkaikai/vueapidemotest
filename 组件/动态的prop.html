@@ -20,7 +20,12 @@
 		components:{
 			"my-component":{
 				props:["myMessage"],// template 里面要是一个变量就必须要传递过来。
-				template:"<div>{{myMessage}}</div>"
+				template:"<div>{{myMessage}}</div>",
+				watch:{
+					myMessage:function(newValue,oldValue){
+						console.log(newValue)
+					}
+				}
 			}
 		},
 		data:{

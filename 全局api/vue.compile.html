@@ -14,10 +14,13 @@
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script>
     /**
-        vue 自定义指令
+       
         在 render 函数中编译模板字符串。只在独立构建时有效
 
         自己总结的compile 的作用是 把html 字符串编译成html然后用render 函数
+
+        要说明的是
+        Vue 选项中的 render 函数若存在，则 Vue 构造函数不会从 template 选项或通过 el 选项指定的挂载元素中提取出的 HTML 模板编译渲染函数。
     */ 
 
     let res = Vue.compile("'<div><span>{{ 123 }}</span></div>'");
@@ -38,6 +41,11 @@
         // staticRenderFns: res.staticRenderFns
     });
 
+    console.log(Vue.version)// 2.6.10
+/**
+    注意 要使用render 也不能少了el 选项
+
+*/
 </script>
 </body>
 </html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$attrs</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+    <div id="test">
+        <mycomponent message="xiaoxi" type="alert"></mycomponent>
+    </div>
+<body>
+    <script>
+        //包含了父作用域中不作为 prop 被识别 (且获取) 的特性绑定 (class 和 style 除外)。当一个组件没有声明任何 prop 时，这里会包含所有父作用域的绑定 (class 和 style 除外)，并且可以通过 v-bind="$attrs" 传入内部组件——在创建高级别的组件时非常有用。
+        Vue.component("mycomponent",{
+            props:["message"],
+            template:"<div>{{$props['message']}} {{$attrs['type']}}</div>"
+        })
+        let aa = new Vue({
+            el:"#test"
+        })
+
+        /**
+            Vue 实例使用的根 DOM 元素
+        */
+        console.log(aa.$el)
+
+    </script>
+</body>
+</html>

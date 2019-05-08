@@ -29,7 +29,7 @@
     });
 
     //console.log(vm.test) //123
-   // console.log(vm._data.test) //123 他两是一样的 vm.test
+    // console.log(vm._data.test) //123 他两是一样的 vm.test
     vm.test = "2345"
 
     /*
@@ -41,7 +41,22 @@
     Vue.nextTick(function() {
         console.log(document.getElementsByClassName("test")[0].textContent) //2345
     }, {})
-     console.log(document.getElementsByClassName("test")[0].textContent) // 123
+    console.log(document.getElementsByClassName("test")[0].textContent) // 123
+
+
+    /**
+        在組件中 可以直接用this.$nextTick 方法。（this.$el 是获取根元素的。）
+
+             methods: {
+    updateMessage: function () {
+      this.message = '已更新'
+      console.log(this.$el.textContent) // => '未更新'
+      this.$nextTick(function () {
+        console.log(this.$el.textContent) // => '已更新'
+      })
+    }
+  }
+     */
     </script>
 </body>
 

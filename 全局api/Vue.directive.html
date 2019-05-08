@@ -24,7 +24,7 @@
             console.log(binding)//一个对象，包含以下属性：
             console.log(vnode)//Vue 编译生成的虚拟节点
             console.log(oldVnode)//上一个虚拟节点，仅在 update 和 componentUpdated 钩子中可用
-            el.focus()
+            // el.focus()
           }
     });
     var vm2=new Vue({
@@ -38,11 +38,7 @@
             items1:1// 可以直接的取值
         },
         methods:{
-            btn2Click:function(){
-                //Vue methods中的this 指向的是Vue的实例，这里可以直接在this中找到items
-                Vue.delete(this.items,2)// 把数组的第三项给删除了
-                // Vue.set(this.items,2,{message:"Change Test",id:'10'});
-            }
+           
         }
     });
 
