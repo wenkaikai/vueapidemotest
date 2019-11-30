@@ -16,13 +16,22 @@
 </base-input>
 	</div>
 	<script>
+
+		/*
+			子组件的props中未注册父组件传递过来的属性 这个选项不影响 class 和 style 绑定
+			当设置inheritAttrs: true（默认）时，子组件的顶层标签元素中（本例子的div元素）会渲染出父组件传递过来的属性
+			本实例是placeholder  和  data-date-picker 都会传到子组件label中
+
+			如果为false 只是传入class
+
+		*/
 	Vue.component("base-input", {
 		inheritAttrs: false, //此处设置禁用继承特性
 		props: ["label"],
 		template: `
 		<label>
 		{{ label }}
-		<input  v-bind="$attrs" >
+		<input   v-bind="$attrs">
 		</label>
 		`,
 		mounted: function() {

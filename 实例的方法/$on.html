@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>$emit</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+    <div id="test">
+        <my-component v-on:my-event="dosoming"></my-component>
+    </div>
+    <script>
+        //$emit 触发当前实例上的事件。附加参数都会传给监听器回调。
+        new Vue({
+            el:"#test",
+            methods:{  
+                dosoming:function(e,e1,e2){
+                    console.log("ok")
+                    console.log(e)
+                    console.log(e1)
+                     console.log(e2)
+                }
+            },
+            mounted(){
+              
+            },
+            components:{
+                "my-component":{
+                    template:"<div v-on:click='childEvent'>fsdfsd</div>",
+                    methods:{
+                        childEvent:function(){
+                            this.$emit("my-event","我是传过来的参数",123,456);
+                        }
+                    },
+                    mounted(){
+                        // $on 写在子元素上才有意义呀。如果写在父元素上就没有意义了
+                        //监听当前实例上的自定义事件。事件可以由vm.$emit触发。回调函数会接收所有传入事件触发函数的额外参数
+
+                        // $on和$emit 其实是一对 对同一个组件的绑定和触发。
+                        this.$on("my-event",function(msg){
+                            console.log(789)
+                            console.log(msg)
+                        })
+                  }
+                }
+            },
+
+        })
+    </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
 	<meta charset="UTF-8">
 	<title>prop的验证规则</title>
@@ -13,8 +13,9 @@
 		></my-component> -->
 
 		<my-component v-bind:my-message="'haode'" 
-		v-bind:my-message1=" '1234' "
+		v-bind:my-message1=" 1234 "
 		v-bind:my-message2="{a:123,b:345}"
+		v-bind:my-message3=" 100 "
 		></my-component>
 		<!-- 此时和上面是同步的。 -->
 	</div>
@@ -31,14 +32,28 @@
 					},
 					myMessage2:{
 						type:Object,
-						required:true
+						required:true// 如果没有 myMessage2 的参数的话控制台会报一个警告
+					},
+					myMessage3:{
+						type:Number,
+						defalut:5,
+						validator:function(value){
+							console.log(value);
+							return value>10?false:true
+							// 如果return false的话会报一个警告 nvalid prop: custom validator check failed for prop "myMessage3"
+							// 并且页面上不显示这个传过来的值。
+						}
 					}
 				},
 				template:`<div>
 				<p>{{myMessage}}</p>
 				<p>{{myMessage1}}</p>
 				<p>{{myMessage2}}</p>
-				</div>`
+				</div>`,
+				mounted(){
+					console.warn(this.$props)// 他两个是一样的
+					console.warn(this._props)
+				}
 			})
 			new Vue({
 				el:"#test"

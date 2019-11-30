@@ -10,8 +10,9 @@
     <my-comp>
          <template slot-scope="props" slot="slot1">
                 <div class="tmpl" >
-                  <!-- 所以说props 是解说 slot标签传过来的所有的值 -->
-                  <!-- poprs.name 是获取不到的 -->
+                  <!-- 所以说props 是解构 slot标签传过来的所有的值 -->
+                  <!-- poprs.name 是获取不到的 因为name 是具名插槽自有属性不能被用-->
+
                   {{props.name}}
                   {{props.value}}
                    {{props.data}}

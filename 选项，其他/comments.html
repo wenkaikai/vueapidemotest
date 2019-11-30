@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>组件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+
+    <div id="myApp">
+        <div class="some-content">
+            This is some content
+        </div>
+        <!-- Comments -->
+        <div v-html="comments"> {{ comments }} </div>
+
+        <div class="some-other-content">
+            This is some content
+        </div>
+    </div>
+    <script>
+        /**
+            comments 
+            这个选项只在完整构建版本中的浏览器内编译时可用
+            当设为 true 时，将会保留且渲染模板中的 HTML 注释。默认行为是舍弃它们。
+        */
+        var productTemplate = new Vue({
+            el: '#myApp',
+            comments: true,
+            data: {
+                comments: `    <!--[if mso]>
+      <div>
+          this div will only be shown if the condition in the comment is true, in this case the condition is:
+          if ( mso (microsoft office) == the html rendering engine) {
+            show the html code between the [if mso] and the [endif]
+          }
+      </div>
+    <![endif]-->`
+            }
+        });
+    </script>
+</body>
+
+</html>
