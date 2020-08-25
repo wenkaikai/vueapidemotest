@@ -8,7 +8,7 @@
 <body>
     <div>
         <p>{{name}}</p>
-        <p>{{getName()}}</p>
+        <!-- <p>{{getName()}}</p> -->
         <p>{{number}}</p>
         <input type="text" v-model="number">
         <!-- 当改变值的时候方法就会重新计算。 -->
@@ -24,18 +24,18 @@
             lastName:"zheng",
             number:0
         }
-        // ,computed:{
-        //    name: function(){
-        //         console.log("computed invoked")
-        //        return `${this.firstName} ${this.number}`; // 当return 的值改变的时候
-        //    }
-        // }
-        ,methods:{
-            getName:function(){
-                console.log("methods invoked")
-                return `${this.firstName} ${this.lastName}`;
-            }
+        ,computed:{
+           name: function(){
+                console.log("computed invoked")
+               return `${this.firstName} ${this.number}`; // 当return 的值改变的时候
+           }
         }
+        // ,methods:{
+        //     getName:function(){
+        //         console.log("methods invoked")
+        //         return `${this.firstName} ${this.lastName}`;
+        //     }
+        // }
     })
 </script>
 </body>

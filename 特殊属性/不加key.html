@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<div id="test">
+    <input type="text" v-model="name">
+    <button @click="add">添加</button>
+    <ul>
+        <li v-for="(item, i) in list">
+            <input type="checkbox"> {{item.name}}
+        </li>
+    </ul>
+</div>
+
+
+
+<body>
+    <script>
+        /**
+           如果没有key  当插入元素后选中的框并没有跟着之前的item.name
+           就是说元素不会比对而是直接渲染
+        */
+        var vm = new Vue({
+            el: '#test',
+            data: {
+                name: '',
+                newId: 3,
+                list: [
+                    { id: 1, name: '李斯' },
+                    { id: 2, name: '吕不韦' },
+                    { id: 3, name: '嬴政' }
+                ]
+            },
+            methods: {
+                add() {
+                    //注意这里是unshift
+                    this.list.unshift({ id: ++this.newId, name: this.name })
+                    this.name = ''
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

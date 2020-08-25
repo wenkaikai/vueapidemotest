@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>组件内的守卫</title>
@@ -34,10 +34,12 @@
                      // 在渲染该组件的对应路由被 confirm 前调用
                     // 不！能！获取组件实例 `this`
                     // 因为当守卫执行前，组件实例还没被创建
+                    console.warn(to)
+                    console.warn(from)
                next(vm => {
                   // 通过 `vm` 访问组件实例
                 })
-               next()
+              //  next()
 
 
             },
@@ -47,7 +49,7 @@
               // 由于会渲染同样的 Foo 组件，因此组件实例会被复用。而这个钩子就会在这个情况下被调用。
               // 可以访问组件实例 `this`
 
-              // console.log(to.params.name,to.params.id)
+              console.log(to.params.name,to.params.id)
               next()
 
 

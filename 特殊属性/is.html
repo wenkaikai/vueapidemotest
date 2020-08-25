@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>特殊属性之is</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<div id="test">
+    <ul>
+        <!-- 
+
+                此时的is 作用是把mycomponent 替代了li
+             -->
+        <li is="mycomponent" v-for="item of 5" :key="item" ></li>
+
+        <!-- 
+
+                此时的is 作用是把mycomponent 替代了mycomponent1
+             -->
+
+        <!-- <mycomponent1 v-for="item of 5" is="mycomponent">{{item}}</mycomponent1> -->
+    </ul>
+</div>
+
+<body>
+    <script>
+        //用于动态组件且基于 DOM 内模板的限制来工作。
+        Vue.component("mycomponent", {
+            props: ["message"],
+            template: "<div>123</div>"
+        })
+        new Vue({
+            el: "#test"
+        })
+
+    </script>
+</body>
+
+</html>

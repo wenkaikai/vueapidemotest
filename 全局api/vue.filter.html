@@ -21,13 +21,16 @@
     Vue.filter('capitalize',function(value,...set){
         // 这里直接是把小写的字母变成大写
         //过滤器是 JavaScript 函数，因此可以接收参数
+        /**
+            filter 函数里面message 作为第一个参数 capitalize 里面的参数一次作为第二，第三个...
+        */
         console.log(set)// [1,2]
        return value.toUpperCase();
     });
     var vm2=new Vue({
         el:"#app2",
         data:{
-            message:""
+            message:"a"
         },
         methods:{
             btn2Click:function(){

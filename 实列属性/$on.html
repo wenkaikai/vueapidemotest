@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>$on</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<div id="test">
+    <button>测试一下点击事件监听$on</button>
+    <mycomponent message="xiaoxi" type="alert" @test="testClick"></mycomponent>
+</div>
+
+<body>
+    <script>
+
+        /**
+           描叙
+           监听当前实例上的自定义事件。事件可以由vm.$emit触发。回调函数会接收所有传入事件触发函数的额外参数。
+           亲自测试不是自定义的事件没有用
+   
+           vm.$on('test', function (msg) {
+                console.log(msg)
+            })
+            vm.$emit('test', 'hi')
+            // => "hi"
+   
+        */
+
+        Vue.component("mycomponent", {
+            props: ["message"],
+            template: "<div @click='test1'>{{$props['message']}} {{$attrs['type']}}</div>",
+            methods: {
+                test1() {
+                    this.$emit("test", '111q')
+                }
+            },
+            mounted() {
+                //$on 要写在子组件中
+                this.$on("test", function (a) {
+                    console.log(a)
+                })
+            }
+        })
+        let vm = new Vue({
+            el: "#test",
+            methods: {
+                testClick() {
+                    console.log(123)
+                }
+            },
+
+        })
+
+
+
+    </script>
+</body>
+
+</html>

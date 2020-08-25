@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>特殊属性之is</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<div id="test">
+    <!--
+    <table>
+     <mycomponent></mycomponent>
+    </table>
+    这样写的话页面会把mycomponent 渲染到table的外面
+
+    这个时候is 的作用就体现出来了
+    这个时候的is绑定的不能是一个变量而是一个字符串
+
+    -->
+    
+
+    <table>
+        <tr is="mycomponent"></tr>
+    </table>
+
+</div>
+
+<body>
+    <script>
+        //用于动态组件且基于 DOM 内模板的限制来工作。
+        Vue.component("mycomponent", {
+            props: ["message"],
+            template: "<div>123</div>"
+        })
+        new Vue({
+            el: "#test"
+        })
+
+    </script>
+</body>
+
+</html>

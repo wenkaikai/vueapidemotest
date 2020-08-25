@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div>
+        <p>{{number}}</p>
+        <input type="text" v-model="number">
+        <!-- 当改变值的时候方法就会重新计算。 -->
+        <button :disabled="isDisabled">点击</button>
+    </div>
+    <script>
+        /**
+            知道为什么每次输入框的值修改就会触发getName函数了因为他每一次的数据修改都触发了视图层。
+        */
+        var app = new Vue({
+            el: "div",
+            data: {
+                firstName: "kaiwen",
+                lastName: "zheng",
+                number: 0
+            }
+            , computed: {
+                isDisabled: function () {
+                    console.log("computed invoked")
+                    if (this.number == 4) {
+                        return true
+                    } else {
+                        return false;
+                    }
+
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

@@ -9,13 +9,24 @@
     <p v-for="item in items" :key="item.id">
         {{item.message}}
     </p>
+
+    <h1>{{object1.key}}</h1>
+    <h1>{{object1.key1}}</h1>
     <button class="btn" @click="btn2Click()">动态赋值</button><br/><br/>
     <button class="btn" @click="btn3Click()">为data新增属性</button>
+    <button class="btn" @click="btn4Click()">改变对象里面的属性</button>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script>
-//向响应式对象中添加一个属性，并确保这个新属性同样是响应式的，且触发视图更新。它必须用于向响应式对象上添加新属性，因为 Vue 无法探测普通的新增属性 
+    /**
+        Vue.set 的作用
+        1， 增加和改变数组的值
+        2， 增加对象的值（如果对象本身有的属性可以用this 直接改变）
+    
+    */
+//向响应式对象中添加一个属性，并确保这个新属性同样是响应式的，
+//且触发视图更新。它必须用于向响应式对象上添加新属性，因为 Vue 无法探测普通的新增属性 
     var vm2=new Vue({
         el:"#app2",
         data:{
@@ -24,7 +35,10 @@
                 {message:"Test two",id:"2"},
                 {message:"Test three",id:"3"}
             ],
-            items1:1// 可以直接的取值
+            items1:1,// 可以直接的取值
+            object1:{
+               key:123 
+            }
         },
         methods:{
             btn2Click:function(){
@@ -35,6 +49,10 @@
             btn3Click:function(){
                 var itemLen=this.items.length;
                 Vue.set(this.items,itemLen,{message:"Test add attr",id:itemLen});
+            },
+            btn4Click(){
+                
+                Vue.set(this.object1,"key1",456);
             }
         }
     });

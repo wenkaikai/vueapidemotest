@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div>
+        <select name="" v-model="_select1111" id="" @change="handleChange">
+            <option :value="item" v-for="(item,key,index) of selectObj">{{item}}</option>
+        </select>
+        <p>{{_select1111}}</p>
+    </div>
+
+
+</body>
+<script>
+    //这样可以循环1到10这10个数字
+    new Vue({
+        el: "div",
+        data: {
+            selectObj: {
+                key1: "select1",
+                key2: "select2",
+                key3: "select3",
+                key4: "select4",
+            },
+            _select1111:"select1",
+        },
+        methods: {
+            handleChange(e) {
+                console.log(e.target.value)
+            }
+        }
+    });
+</script>
+
+</html>

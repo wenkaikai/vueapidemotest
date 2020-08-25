@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>全局前置守卫</title>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <div id="app">
+        <h1>Hello App!</h1>
+        <p>
+            <router-link to="/user/我是用户一/post/789">Go to Foo</router-link>
+
+            <!-- 还可以设置多段路径参数 -->
+            <router-link to="/user/我是用户二/post/666">Go to Bar</router-link>
+        </p>
+
+        <router-view></router-view>
+    </div>
+</body>
+
+<script>
+    /**
+    当一个导航触发时，全局前置守卫按照创建顺序调用。守卫是异步解析执行，此时导航在所有守卫 resolve 完之前一直处于 等待中
+    */
+    const User = { // 组件的名字的首字母要大写
+        template: "<div>User{{$route.params.name}}我的id是{{$route.params.id}}</div>",
+    }
+
+
+    const routes = [
+        { path: '/user/:name/post/:id', component: User },
+    ]
+
+    const router = new VueRouter({
+        routes // (缩写) 相当于 routes: routes
+    })
+    router.beforeEach((to,from,next)=>{
+        console.log(to)
+        console.log(from)
+        next()
+    })
+    const app = new Vue({
+        router
+    }).$mount('#app')
+
+
+</script>
+<style>
+    /*
+        要注意，当 <router-link> 对应的路由匹配成功，将自动设置 class 属性值 .router-link-active
+        .router-link-active 是当view 点击选中当前的组件的时候自动添加的类名
+        我们可以这样设置选中的状态。
+  */
+    .router-link-active {
+        color: red;
+    }
+</style>
+
+</html>

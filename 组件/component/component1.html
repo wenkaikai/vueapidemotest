@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<div id="test">
+    <div @click="switchTab">
+        <button>tab1</button>
+        <button>tab2</button>
+        <button>tab3</button>
+    </div>
+    <div>
+        <component :is="dynamicComponent"></component>
+    </div>
+
+</div>
+
+<body>
+    <script>
+        //用于动态组件且基于 DOM 内模板的限制来工作。
+        /**
+            内置的组件component 可以很轻松的实现tab切换
+        */
+        Vue.component("mycomponent1", {
+            props: ["message"],
+            template: "<div>tab1</div>"
+        })
+        Vue.component("mycomponent2", {
+            props: ["message"],
+            template: "<div>tab2</div>"
+        })
+        Vue.component("mycomponent3", {
+            props: ["message"],
+            template: "<div>tab3</div>"
+        })
+        new Vue({
+            el: "#test",
+            data:{
+                dynamicComponent:"mycomponent1"
+            },
+            methods:{
+                switchTab(e){
+                    if(e.target.nodeName.toLowerCase()=='button'){
+                        this.dynamicComponent=`mycomponent${e.target.innerText[3]}`
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

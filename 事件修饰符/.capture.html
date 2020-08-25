@@ -34,13 +34,13 @@
 加了capture 就有点了事件捕获得味道
  -->
 <div id="content">
-    <div id="obj1" v-on:click="doc">
+    <div id="obj1" v-on:click.capture="doc">
         obj1
-        <div id="obj2" v-on:click="doc">
+        <div id="obj2" v-on:click.capture="doc">
             obj2
-            <div id="obj3" v-on:click="doc">
+            <div id="obj3" v-on:click.capture="doc">
                 obj3
-                <div id="obj4" v-on:click.prevent="doc">
+                <div id="obj4" v-on:click.capture="doc">
                 obj4
                 <!--点击obj4的时候，弹出的顺序为：obj1、obj2、obj4、obj3；
                 由于1，2有修饰符，故而先触发事件，然后就是4本身触发，最后冒泡事件。

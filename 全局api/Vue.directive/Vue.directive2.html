@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <div id="app2">
+        <div id="dynamicexample">
+            <h3>Scroll down inside this section ↓</h3>
+            <p v-pin:[direction]="200">I am pinned onto the page at 200px to the left.</p>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        /**
+           总结一下指令就是 命令的意思命令这个元素做什么事情可以实现自己想实现的东西。
+
+        */
+
+        Vue.directive('pin', {
+            bind: function (el, binding, vnode) {
+                el.style.position = 'fixed'
+                var s = (binding.arg == 'left' ? 'left' : 'top')
+                el.style[s] = binding.value + 'px'
+            }
+        })
+
+        
+        new Vue({
+            el: '#dynamicexample',
+            data: function () {
+                return {
+                    // direction: 'left'
+                    direction: 'top'
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
