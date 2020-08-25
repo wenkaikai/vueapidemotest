@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>render</title>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <ul>
+          <li>好的1</li>
+          <li>好的2</li>
+          <li>好的3</li>
+          <li>好的4</li>
+          <li>好的5</li>
+          <li>好的6</li>
+      </ul>
+    </div>
+  </body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+
+  <script>
+    /**
+      el
+      string | HTMLElement
+    
+    */
+   
+    var vm = new Vue({
+      el: '#container'
+    });
+
+    console.log(vm.$el)
+  </script>
+</html>

@@ -9,8 +9,8 @@
    <div id="app">
     <my-comp>
        <template>
-            upload
-            <!-- 如果没有upload 就是submit(默认的) -->
+            upload  
+            <!-- 如果没有upload即是upload为空 就是submit(默认的) -->
        </template>
     </my-comp>
 </div>
@@ -18,7 +18,7 @@
     Vue.component('my-comp', {
         template:
          `<button type="submit">
-            <slot>submit</slot>
+            <slot>submit22</slot>
          </button>`,
     });
     new Vue({

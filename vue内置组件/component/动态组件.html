@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>组件切换comment--适用于多个组件切换</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!--	注意：直接写组件名称，会被当成字符串，所以要加上''-->
+			<a href="#" @click.prevent="comName='login'">登录</a>
+			<a href="#" @click.prevent="comName='reqister'">注册</a>
+			
+			<!--vue 提供了component，来展示对应名称的组件-->
+			<!--component是一个占位符，:is属性可以用来指定要展示的组件的名称-->
+			
+		
+			<component :is="comName"></component>
+		</div>
+		<script>
+            Vue.component("login",{
+            	data(){
+            		return{
+            		 	
+            		}
+            	},
+            	template:`
+            	   <div>
+            	       <h3>登录</h3>
+            	   </div>
+            	`
+            })
+           
+            Vue.component("reqister",{
+            	data(){
+            		return{
+            		 	
+            		}
+            	},
+            	template:`
+            	   <div>
+            	       <h3>注册</h3>
+            	   </div>
+            	`
+            })
+           
+			new Vue({
+				el:"#app",
+				data:{
+					comName:"login"
+				}
+			})
+		</script>
+	</body>
+</html>

@@ -1,32 +1,67 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>vue.extend</title>
+  <meta charset="UTF-8">
+  <title>vue.extend</title>
 </head>
+
 <body>
-<div id="app2">
-   
-</div>
+  <div id="app2">
 
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script>
-//使用基础 Vue 构造器，创建一个“子类”。参数是一个包含组件选项的对象。继承是一个组件
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script>
+    //使用基础 Vue 构造器，创建一个“子类”。参数是一个包含组件选项的对象。继承是一个组件
+
+
+    /*
+      1.1，Vue.extend返回的是一个扩展实例构造器，也就是预设了部分选项的Vue实例构造器。
+    
+    1.2，其主要用来服务于Vue.component，用来生成组件
+    
+    可以简单的理解为当在模板中遇到该组件名称作为标签的自定义元素时，会自动调用扩展实例构造器来生产组件实例，并挂载到自定义元素上。
+    ————————————————
+    版权声明：本文为CSDN博主「伯爵大人」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+    原文链接：https://blog.csdn.net/lixianghai2010/article/details/89005723
+    */
+
+
+    /*
+        要注意的是
+        请注意，extend创建的是一个组件构造器，而不是一个具体的组件实例。所以他不能直接在new Vue中这样使用：
+         new Vue({components: fuck})
+        最终还是要通过Vue.components注册才可以使用的。
+    */
     var Profile = Vue.extend({
-          template: '<p>{{firstName}} {{lastName}} aka {{alias}} {{"propsData"+data}}</p>',
-          data: function () {
-            return {
-              firstName: 'Walter',
-              lastName: 'White',
-              alias: 'Heisenberg'
-            }
-          },
-          props:['data']
-        })
-  console.log(new Profile())// 当继承过来的组件new 过以后才会是一个组件
-// 创建 Profile 实例，并挂载到一个元素上。
-new Profile({propsData:{data:'传过来的值'}}).$mount('#app2')
-</script>
-</body>
-</html>
+      template: '<p>{{firstName}} {{lastName}} aka {{alias}} {{"propsData"+data}}</p>',
+      data: function () {
+        return {
+          firstName: 'Walter',
+          lastName: 'White',
+          alias: 'Heisenberg'
+        }
+      },
+      props: ['data']
+    })
+    console.log(new Profile())// 当继承过来的组件new 过以后才会是一个组件
+    // 创建 Profile 实例，并挂载到一个元素上。
+    // new Profile({propsData:{data:'传过来的值'}}).$mount('#app2')
 
+    // 第二种用 el 的方式
+    /**
+        那么这样他和new vue 有什么关系呢。vue.extend 出来后的东西又怎么用呢。
+    */
+    new Profile(
+      {
+        propsData: { data: '传过来的值' },
+        el: "#app2"
+
+      })
+
+
+  </script>
+</body>
+
+</html>

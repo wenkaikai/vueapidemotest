@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>render</title>
+    <style>
+      
+    </style>
+  </head>
+  <body>
+    <div id="container">
+        <!-- 这是父亲组件 -->
+        <my-component message="hello"></my-component>
+    </div>
+  </body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+  <script>
+    /**
+      parent
+            指定已创建的实例之父实例，在两者之间建立父子关系。子实例可以用 this.$parent 访问父实例，子实例被推入父实例的 $children 数组中
+            # 节制地使用 $parent 和 $children - 它们的主要目的是作为访问组件的应急方法。更推荐用 props 和 events 实现父子组件通信
+    */
+   
+    var vm = new Vue({
+      
+      el: '#container',
+      components:{
+          "my-component":{
+                props:["message"],
+                template:`<div>{{message}}</div>`,
+                mounted(){
+                        console.log(this.$parent)
+
+                }
+          }
+      },
+      data:{
+          aa:124
+      },
+      mounted(){
+          console.log(this.$children)
+      }
+    });
+  </script>
+  <style>
+      .ul5{
+          color:purple;
+      }
+  </style>
+</html>
