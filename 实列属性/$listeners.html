@@ -30,6 +30,7 @@
                     {
                       // 这里确保组件配合 `v-model` 的工作
                       input: function (event) {
+                        console.log(vm.$listeners)
                         vm.$emit('input', event.target.value)
                       }
                     }
