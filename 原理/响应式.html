@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+        let state = {count:0};
+        function defineReactive(obj){
+            for(let prop in obj){
+                Object.definePropert(obj,prop,{
+                    set:function(){
+                        // 赋值的时候
+                    },
+                    get:function(){
+                        // 取值的时候
+                    }
+                })
+            }
+        }
+
+
+        defineReactive(state);
+        const watcher = ((fn)=>{
+            fn();
+        })
+
+        // 调用
+        watcher(()=>{
+            app.innerHTML = state.count;
+        })
+        watcher(()=>{
+            console.log(state.count);
+        })
+    </script>
+</body>
+</html>
