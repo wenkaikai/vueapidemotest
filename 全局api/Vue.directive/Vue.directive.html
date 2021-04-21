@@ -20,7 +20,7 @@
             binding.expression   字符串形式的指令表达式
             binding.value 指令绑定的值
             binding.arg  传给指令的参数
-            binding.modifiers 一个包含修饰符的对象
+            binding.modifiers 一个包含修饰符的对象 ：一个包含修饰符的对象。例如：v-my-directive.foo.bar 中，修饰符对象为 { foo: true, bar: true }。
 
         */
 
@@ -28,11 +28,11 @@
             bind: function (el, binding, vnode) {
                 var s = JSON.stringify
                 el.innerHTML =
-                    'name: ' + s(binding.name) + '<br>' +
-                    'value: ' + s(binding.value) + '<br>' +
-                    'expression: ' + s(binding.expression) + '<br>' +
-                    'argument: ' + s(binding.arg) + '<br>' +
-                    'modifiers: ' + s(binding.modifiers) + '<br>' +
+                    'name: ' + s(binding.name) + '<br>' + // demo
+                    'value: ' + s(binding.value) + '<br>' + // hello! 
+                    'expression: ' + s(binding.expression) + '<br>' + // message
+                    'argument: ' + s(binding.arg) + '<br>' + // foo
+                    'modifiers: ' + s(binding.modifiers) + '<br>' + // 
                     'vnode keys: ' + Object.keys(vnode).join(', ')
             }
         })
