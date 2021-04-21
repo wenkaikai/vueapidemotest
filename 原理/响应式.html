@@ -10,14 +10,27 @@
     <div id="app"></div>
     <script>
         let state = {count:0};
+        let active;// define a variable to save function;
         function defineReactive(obj){
             for(let prop in obj){
-                Object.definePropert(obj,prop,{
-                    set:function(){
-                        // 赋值的时候
-                    },
+                let value = obj[prop];// initialization value;
+                let dept = [];// every property define a dept;
+                Object.defineProperty(obj,prop,{
                     get:function(){
+                        // 赋值的时候
+                        if(active){
+                            dept.push(active);
+                        }
+                      
+                        return value;
+                    },
+                    set:function(newValue){
                         // 取值的时候
+                        value = newValue;
+                        dept.forEach(element => {
+                            element();
+                        });
+                       
                     }
                 })
             }
@@ -26,13 +39,17 @@
 
         defineReactive(state);
         const watcher = ((fn)=>{
+            active = fn;
             fn();
+            active = null;
+
         })
 
-        // 调用
+        // first invoke
         watcher(()=>{
             app.innerHTML = state.count;
         })
+        // second invoke
         watcher(()=>{
             console.log(state.count);
         })

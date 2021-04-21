@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+
+        // vue 中修改数组的索引和长度都是无法监控的 可以用vue
+        let state = [1,2]
+        let originalMethods = Array.prototype;
+        let newMethods = Object.create(originalMethods);
+        function defineReactive(state){
+           newMethods.push = function(...args){ //rest function
+               originalMethods.push.call(this,...args)
+                render();
+           }
+           state.__proto__ = newMethods;
+        }
+        defineReactive(state);
+        const render = ((fn)=>{
+            app.innerHTML = state;
+        })
+       
+    </script>
+</body>
+</html>

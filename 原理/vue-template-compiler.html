@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue-template-compiler</title>
+</head>
+<body>
+    <script src="./node_modules/vue-template-compiler/browser.js"></script>
+    <script>
+        // template => ast =>codegen => with + function 实现生成render方法
+        let {ast,render} = VueTemplateCompiler.compile(`<div>zf</div>`);
+        console.log(ast)
+        console.log(render);
+        console.log(new Function(render).toString())
+
+    </script>  
+</body>
+</html>

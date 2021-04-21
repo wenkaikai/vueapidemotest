@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue 的生命周期函数</title>
+</head>
+<body>
+    <script>
+        /**
+         *  vue 生命周期函数原理
+         * 
+         * vue 的生命周期钩子就是回调函数而已，内部会转换为数组，当创建的过程中会遍历数组
+         * 创建实例的过程中会掉用对应的钩子方法（主要是钩子函数的合并）
+        */
+
+
+        function mergeHook(parentVal,childVal){
+            if(childVal){
+                if(parentVal){
+                    return parentVal.concat(childVal);
+                }else{
+                    return [childVal]// 将钩子函数包装成一个数组
+                }
+            }else{
+                return parentVal
+            }
+        }
+
+        function mergeOptions(parent,child){
+            let opts = {};
+            for(let key in child){
+                opts[key] = mergeHook(parent[key],child[key])
+            }// 合并钩子方法
+
+            return opts;
+        }
+
+
+        function callHooks(vm,hookName){
+            vm.options[hookName].forEach(element => {
+                element();
+            });
+        }
+        // Vue 的构造函数
+        function Vue(options){
+            // console.log(options)
+            // console.log(this)// this 指的是 new Vue 的这个对象
+            // console.log(this.constructor)
+            // console.log(this.constructor.options)// 能够获取构造函数的静态方法
+
+            this.options = mergeOptions(this.constructor.options,options)
+            console.log(this.options)
+            callHooks(this,"beforeCreated")
+
+        }
+
+        // 全局组件 全局过滤器
+        Vue.options = {// 全局的方法并不是直接定义在 options 里面，而是定义在Vue.mixin 里面
+           
+        };// 
+
+         /**
+         *  Vue.mixin 又很多缺陷 比如命名冲突问题，依赖问题，数据来源问题
+        */
+
+        Vue.mixin = function(obj){
+            // 
+            this.options = mergeOptions(this.options,obj);
+           
+        }
+
+        Vue.mixin({
+            beforeCreated(){
+                console.log("created ok ")
+            }
+        })
+        new Vue({
+            beforeCreated(){
+                console.log('before create ok');
+            },
+            mounted(){
+                console.log("before mounted ok")
+            }
+        })
+        
+        console.log(Vue.options)
+
+       
+    </script>
+</body>
+</html>
